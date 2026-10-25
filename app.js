@@ -2,7 +2,7 @@
       (function () {
         "use strict";
         var DS = "https://api.dexscreener.com/tokens/v1/solana/";
-        var RPC = "https://solana-rpc.publicnode.com";
+        var RPC_PUBLIC = "https://solana-rpc.publicnode.com", RPC = RPC_PUBLIC;
         var SOL_MINT = "So11111111111111111111111111111111111111112";
         var SLING = "umXBYVG9NZsij5gWyVYRBEbVxJucEfX4B69RNZ2pump";
         var WL_DEFAULT = [
@@ -792,7 +792,7 @@
             });
           }).then(function () {
             if (run !== scanRun) return null;
-            return pool(jobs, 12, function (job) {
+            return pool(jobs, HELIUS_KEY ? 8 : 12, function (job) {
               if (run !== scanRun) return;
               return rpcRetry("getTransaction", [job.sig, { encoding: "jsonParsed", maxSupportedTransactionVersion: 1, commitment: "confirmed" }]).then(function (tx) {
                 doneT++; if (doneT % 10 === 0 || doneT === jobs.length) onProgress("Membaca transaksi " + doneT + "/" + jobs.length + "…");
@@ -856,7 +856,37 @@
         }
         // ---------- holder terbesar (tanpa bonding curve / pool) ----------
         // getTokenLargestAccounts tidak tersedia di PublicNode gratis → pakai RPC publik Solana.
-        var HOLDER_RPC = "https://api.mainnet-beta.solana.com", SYS_PROG = "11111111111111111111111111111111";
+        var HOLDER_PUBLIC = "https://api.mainnet-beta.solana.com", HOLDER_RPC = HOLDER_PUBLIC, SYS_PROG = "11111111111111111111111111111111";
+        // ---------- API key Helius (opsional) ----------
+        // Disimpan hanya di localStorage browser ini, tidak pernah dikirim ke GitHub.
+        var HELIUS_STORE = "naszcan-helius-key", HELIUS_KEY = "";
+        function applyHelius(key) {
+          key = String(key || "").trim();
+          if (key && !/^[A-Za-z0-9-]{16,64}$/.test(key)) return false;
+          HELIUS_KEY = key;
+          var url = key ? "https://mainnet.helius-rpc.com/?api-key=" + encodeURIComponent(key) : "";
+          RPC = url || RPC_PUBLIC; HOLDER_RPC = url || HOLDER_PUBLIC;
+          return true;
+        }
+        function heliusStatus(t, cls) { var s = $("helius-msg"); if (s) { s.textContent = t; s.className = "x-src " + (cls || ""); } }
+        try { if (CAN_STORE) applyHelius(localStorage.getItem(HELIUS_STORE) || ""); } catch (e) {}
+        if ($("scan-helius")) {
+          $("scan-helius").value = HELIUS_KEY;
+          heliusStatus(HELIUS_KEY ? "Memakai RPC Helius." : "Kosong = RPC publik gratis.", HELIUS_KEY ? "pos" : "");
+          $("scan-helius").addEventListener("change", function () {
+            var v = this.value.trim();
+            if (!applyHelius(v)) { heliusStatus("Format API key tidak valid.", "neg"); return; }
+            try { if (CAN_STORE) { if (v) localStorage.setItem(HELIUS_STORE, v); else localStorage.removeItem(HELIUS_STORE); } } catch (e) {}
+            if (!v) { heliusStatus("Kosong = RPC publik gratis.", ""); return; }
+            heliusStatus("Mengecek API key…", "");
+            rpcAt(RPC, "getSlot", []).then(function () {
+              heliusStatus("Memakai RPC Helius." + (CAN_STORE ? " Tersimpan di browser ini." : ""), "pos");
+              // ulangi cek holder yang tadi gagal ("?")
+              scanShown.forEach(function (c) { if (c.topHolder === null) c.topHolder = undefined; });
+              renderScan(); checkHolders(scanShown);
+            }, function () { applyHelius(""); heliusStatus("API key ditolak Helius. Kembali ke RPC publik.", "neg"); });
+          });
+        }
         function rpcAt(url, method, params) {
           return fetchJSON(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: method, params: params }) })
             .then(function (j) { if (j.error) throw new Error("RPC: " + (j.error.message || "error")); return j.result; });
@@ -891,7 +921,7 @@
             if (i >= list.length) return Promise.resolve();
             var c = list[i++]; c._thBusy = true; renderScan();
             return topHolderPct(c.ca).then(function (p) { c.topHolder = p; }, function () { c.topHolder = null; })
-              .then(function () { c._thBusy = false; renderScan(); return sleep(400); }).then(next);
+              .then(function () { c._thBusy = false; renderScan(); return sleep(HELIUS_KEY ? 150 : 400); }).then(next);
           }
           return next();
         }
