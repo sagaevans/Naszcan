@@ -3,14 +3,14 @@
 // menjumlahkan SOL yang dibelanjakan per token pump.fun, lalu memperkaya dengan DexScreener.
 // Output: data/scan.json
 // Jalankan: node scanner/scan.mjs   (Node 18+)
-// Env opsional: RPC_URL (mis. Helius), HOURS (default 12), MAX_WALLETS (default 100),
+// Env opsional: RPC_URL (mis. Helius), HOURS (default 2), MAX_WALLETS (default 100),
 //               MAX_TX_PER_WALLET (default 500), CONCURRENCY (default 8), OUT (default data/scan.json)
 
 import { writeFile, mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 
 const RPC_URL = (process.env.RPC_URL || "").trim() || "https://solana-rpc.publicnode.com";
-const HOURS = +(process.env.HOURS || 12);
+const HOURS = +(process.env.HOURS || 2);
 const MAX_WALLETS = +(process.env.MAX_WALLETS || 100);
 const MAX_TX = +(process.env.MAX_TX_PER_WALLET || 500);
 const CONC = +(process.env.CONCURRENCY || 8);
