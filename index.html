@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="id"><head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Simulator Trading Memecoin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400&amp;display=swap"/>
+    <link rel="stylesheet" href="style.css"/>
+    
+    
+  </head>
+  <body>
+    <div class="page x-app" id="top">
+      <header class="nav glass" data-auto=""></header>
+      <main class="main">
+        <div class="x-top">
+          <div class="x-title">
+            <h1>Simulator Trading Memecoin</h1>
+            <span class="chip">Paper trading · uang virtual</span>
+          </div>
+          <p class="x-banner" role="note">Simulasi saja — tidak ada uang sungguhan.</p>
+          <section class="stats" aria-label="Ringkasan portofolio">
+            <div class="stat"><span class="stat__fig" id="h-cash">$0.00</span><span class="stat__label">Saldo kas virtual</span></div>
+            <div class="stat"><span class="stat__fig" id="h-total">$0.00</span><span class="stat__label">Nilai portofolio</span></div>
+            <div class="stat"><span class="stat__fig" id="h-pl">$0.00</span><span class="stat__label" id="h-pl-label">Total P/L</span></div>
+          </section>
+          <div class="x-row">
+            <button class="x-b x-b--sm" type="button" id="bal-toggle" aria-expanded="false">Atur saldo awal</button>
+            <span class="x-src" id="h-start">Saldo awal $100</span>
+          </div>
+          <div class="x-panel" id="bal-form" hidden="">
+            <label class="x-label" for="bal-input">Saldo awal baru (USD)
+              <input class="x-input" id="bal-input" type="text" inputmode="decimal" autocomplete="off"/>
+            </label>
+            <p class="x-src">Kas ikut naik atau turun sebesar selisihnya; posisi tetap.</p>
+            <div class="x-row"><button class="x-b" type="button" id="bal-apply">Simpan</button><button class="x-b" type="button" id="bal-cancel">Batal</button></div>
+          </div>
+        </div>
+
+        <section class="section" id="trade" data-nav="Trading">
+          <div class="head">
+            <h2>Muat token, lalu beli atau jual.</h2>
+            <p class="head__sub">Tempel contract address (CA) Solana.</p>
+          </div>
+          <div class="x-top">
+            <form class="x-row" id="search" autocomplete="off">
+              <div class="x-grow">
+                <input class="x-input" id="ca-input" type="search" placeholder="Tempel CA atau ketik nama/ticker koin" aria-label="Contract address, nama, atau ticker koin" aria-controls="search-res" spellcheck="false" enterkeyhint="search"/>
+              </div>
+              <button class="x-b x-b--main" style="width:auto;min-height:var(--tap)" type="submit">Cari</button>
+            </form>
+            <label class="x-check"><input type="checkbox" id="pump-only" checked=""/> Hanya koin pump.fun</label>
+            <div class="x-res" id="search-res" aria-live="polite" hidden=""></div>
+            <div class="x-wl" id="watchlist" aria-label="Watchlist"></div>
+            <div class="x-trade-grid">
+              <div class="x-panel x-area-card" id="token-card" aria-live="polite"></div>
+              <div class="x-panel x-area-trade" id="trade-panel"></div>
+              <div class="x-chart x-area-chart" id="chart-wrap" hidden="">
+                <iframe id="chart" title="Grafik harga DexScreener" loading="lazy" hidden=""></iframe>
+                <div class="x-ohlc" id="ohlc-box" hidden="">
+                  <div class="x-ohlc__bar" role="group" aria-label="Timeframe">
+                    <button type="button" data-tf="1m" aria-pressed="false">1m</button><button type="button" data-tf="5m" aria-pressed="true">5m</button><button type="button" data-tf="15m" aria-pressed="false">15m</button><button type="button" data-tf="1j" aria-pressed="false">1j</button><button type="button" data-tf="4j" aria-pressed="false">4j</button>
+                    <span class="x-ohlc__src">GeckoTerminal · WIB</span>
+                  </div>
+                  <div class="x-ohlc__chart" id="ohlc"></div>
+                  <p class="x-ohlc__msg" id="ohlc-msg" hidden="">Memuat grafik…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="scanner" data-nav="Scanner">
+          <div class="head">
+            <h2>Scanner koin KOL</h2>
+            <p class="head__sub">Koin pump.fun yang dibeli wallet top leaderboard Kolscan dalam 12 jam terakhir. Diperbarui otomatis oleh GitHub Actions; harga &amp; market cap dicek ulang live saat scan.</p>
+          </div>
+          <div class="x-scan-bar">
+            <button class="x-b" type="button" id="scan-btn">Scan koin</button>
+            <label>Min. wallet KOL <select id="scan-min"><option value="1">1</option><option value="2" selected="">2</option><option value="3">3</option><option value="5">5</option></select></label>
+            <label>Maks. market cap <select id="scan-mc"><option value="0">Semua</option><option value="100000">$100K</option><option value="1000000" selected="">$1M</option><option value="10000000">$10M</option></select></label>
+            <label><input type="checkbox" id="scan-hold" checked=""/> Masih dipegang</label>
+          </div>
+          <p class="x-src" id="scan-meta">Tekan Scan koin untuk memuat hasil terbaru.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Token</th>
+                  <th scope="col">Wallet KOL</th>
+                  <th scope="col">SOL dibeli</th>
+                  <th scope="col">Market cap</th>
+                  <th scope="col">1j</th>
+                  <th scope="col">Beli terakhir</th>
+                  <th scope="col"><span class="fineprint">Aksi</span></th>
+                </tr>
+              </thead>
+              <tbody id="scan-body"></tbody>
+            </table>
+          </div>
+          <p class="x-src">Bukan saran finansial. Memecoin sangat berisiko; gunakan untuk latihan di simulator.</p>
+        </section>
+
+        <section class="section" id="posisi" data-nav="Posisi">
+          <div class="head">
+            <h2>Posisi terbuka</h2>
+            <p class="head__sub">Harga semua posisi diperbarui otomatis.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Token</th>
+                  <th scope="col">Jumlah</th>
+                  <th scope="col">Harga masuk</th>
+                  <th scope="col">Harga kini</th>
+                  <th scope="col">Nilai</th>
+                  <th scope="col">P/L</th>
+                  <th scope="col"><span class="fineprint">Aksi</span></th>
+                </tr>
+              </thead>
+              <tbody id="pos-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="riwayat" data-nav="Riwayat">
+          <div class="head">
+            <h2>Riwayat transaksi</h2>
+            <p class="head__sub">Waktu dalam WIB (Asia/Jakarta).</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Waktu</th>
+                  <th scope="col">Aksi</th>
+                  <th scope="col">Token</th>
+                  <th scope="col">USD</th>
+                  <th scope="col">Jumlah token</th>
+                  <th scope="col">Harga</th>
+                  <th scope="col">Fee</th>
+                </tr>
+              </thead>
+              <tbody id="hist-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="data" data-nav="Data">
+          <div class="head">
+            <h2>Simpan, pulihkan, atau mulai ulang.</h2>
+            <p class="head__sub" data-store-note="">Data tersimpan otomatis di browser ini. Ekspor untuk cadangan atau pindah perangkat.</p>
+          </div>
+          <div class="pair">
+            <div class="x-panel">
+              <h3>Ekspor data</h3>
+              <p class="x-src">Salin JSON ini dan simpan di catatan.</p>
+              <button class="x-b" type="button" id="exp-btn">Ekspor data</button>
+              <div id="exp-box" hidden="">
+                <textarea class="x-area" id="exp-text" readonly="" aria-label="Data portofolio (JSON)"></textarea>
+                <div class="x-row" style="margin-top:8px"><button class="x-b" type="button" id="exp-copy">Salin</button></div>
+              </div>
+            </div>
+            <div class="x-panel">
+              <h3>Impor data</h3>
+              <p class="x-src">Tempel JSON hasil ekspor untuk memulihkan portofolio.</p>
+              <textarea class="x-area" id="imp-text" aria-label="Tempel JSON portofolio" placeholder="{&#34;cash&#34;: 95, …}"></textarea>
+              <div class="x-row"><button class="x-b" type="button" id="imp-btn">Impor data</button></div>
+              <p class="x-src" id="imp-msg" role="status"></p>
+            </div>
+          </div>
+          <div class="aside">
+            <h3>Reset</h3>
+            <p class="fineprint">Hapus semua posisi dan riwayat, saldo kembali ke $100.</p>
+            <div class="x-row" style="margin-top:12px">
+              <button class="x-b x-b--danger" type="button" id="reset-btn">Reset</button>
+              <span id="reset-confirm" class="x-row" hidden="">
+                <span class="x-src">Yakin? Semua data hilang.</span>
+                <button class="x-b x-b--danger" type="button" id="reset-yes">Ya, reset</button>
+                <button class="x-b" type="button" id="reset-no">Batal</button>
+              </span>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="foot">
+        <p>Data harga dari DexScreener &amp; Solana RPC publik. Memecoin sangat berisiko; ini hanya latihan.</p>
+        <nav aria-label="Kembali ke bagian" data-auto=""></nav>
+        <a class="badge" href="https://hark.com/" rel="noopener" target="_blank"><span class="hark-mark"></span><span>built by hark</span></a>
+      </footer>
+    </div>
+    <div class="x-toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="hark.js"></script>
+    <script src="app.js"></script>
+  
+
+</body></html>
