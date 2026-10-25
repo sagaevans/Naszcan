@@ -86,7 +86,7 @@ Scan penuh lewat Actions masih tersedia: **Actions → Scan koin KOL → Run wor
 **Skor** (untuk urutan, bukan rekomendasi):
 `skor = wallet_pembeli × 10 + wallet_masih_pegang × 8 + log10(1 + SOL_dibeli) × 12 − penalti kenaikan 24 jam`
 
-**Filter di app**: minimal jumlah wallet KOL, maksimal market cap, dan hanya koin yang masih dipegang.
+**Filter di app**: minimal jumlah wallet KOL, maksimal market cap, dan hanya koin yang masih dipegang KOL (default aktif: minimal 1 wallet masih memegang ≥50% pembeliannya).
 
 **Kenapa hasil bisa berbeda dari Kolscan?** Scanner hanya menghitung swap sederhana SOL↔token; transaksi rumit (multi-token, transfer, bridge) dilewati. Jumlah transaksi per wallet juga dibatasi (`MAX_TX_PER_WALLET`).
 
