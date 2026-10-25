@@ -857,7 +857,8 @@
           meta.textContent = "Memuat daftar wallet KOL…";
           var label = hours < 1 ? Math.round(hours * 60) + " menit" : hours + " jam";
           loadWallets().then(function (wallets) {
-            return liveScan(hours, wallets.slice(0, 100), function (t) { if (run === scanRun) meta.textContent = t; }, run);
+            var maxW = Math.max(1, Math.round(+($("scan-wallets") && $("scan-wallets").value) || 50));
+            return liveScan(hours, wallets.slice(0, maxW), function (t) { if (run === scanRun) meta.textContent = t; }, run);
           }).then(function (j) {
             if (!j || run !== scanRun) return;
             scanData = j; scanLive = {};
