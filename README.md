@@ -97,6 +97,10 @@ Scan penuh lewat Actions masih tersedia: **Actions → Scan koin KOL → Run wor
 
 Detail singkat ada juga di [`SCANNER.md`](SCANNER.md).
 
+### Filter holder terbesar
+
+**Holder terbesar maks. (%)** (default 15) menyembunyikan koin yang satu wallet-nya memegang lebih dari batas itu. Akun milik program (bonding curve pump.fun, pool PumpSwap/Raydium) dilewati, jadi yang dihitung hanya wallet biasa. Data dari `getTokenLargestAccounts` di RPC publik Solana (`api.mainnet-beta.solana.com`, karena PublicNode gratis tidak menyediakannya). RPC ini sering membatasi permintaan; jika gagal, kolom menampilkan "?" dan koin tetap ditampilkan. Isi 0 untuk mematikan filter.
+
 ### Pelacak hasil scan (+10 & +60 menit)
 
 Setiap koin yang lolos filter setelah **Scan koin** dicatat otomatis (harga & market cap saat scan). Selama halaman terbuka, harga dicek tiap menit dan disimpan pada menit ke-10 dan ke-60, plus kenaikan tertinggi (Maks). Ringkasan menampilkan berapa persen koin naik, median perubahan, dan jumlah koin yang ≥ +100%. Data tersimpan di browser (`naszcan-track-v1`, maks. 200 koin). Jika halaman ditutup saat jadwal cek, kolom ditandai "terlewat". Tujuannya mengumpulkan data sendiri untuk menguji apakah sinyal KOL benar-benar menguntungkan.
