@@ -82,6 +82,7 @@
             <label>Dibeli dalam (jam) <input type="number" id="scan-hours" value="2" min="0.25" max="6" step="0.25" inputmode="decimal"/></label>
             <label>Umur koin maks. (jam) <input type="number" id="scan-age" value="24" min="0.25" max="168" step="0.25" inputmode="decimal"/></label>
             <label>Min. SOL dibeli KOL <input type="number" id="scan-minsol" value="2" min="0" max="1000" step="0.1" inputmode="decimal"/></label>
+            <label>Holder terbesar maks. (%) <input type="number" id="scan-top" value="15" min="0" max="100" step="1" inputmode="decimal"/></label>
             <label>Min. wallet KOL <select id="scan-min"><option value="1" selected="">1</option><option value="2">2</option><option value="3">3</option><option value="5">5</option></select></label>
             <label>Maks. market cap <select id="scan-mc"><option value="0" selected="">Semua</option><option value="100000">$100K</option><option value="1000000">$1M</option><option value="10000000">$10M</option></select></label>
             <label><input type="checkbox" id="scan-hold" checked=""/> Masih dipegang KOL</label>
@@ -95,6 +96,7 @@
                   <th scope="col">Umur koin</th>
                   <th scope="col">Wallet KOL</th>
                   <th scope="col">SOL dibeli</th>
+                  <th scope="col">Holder terbesar</th>
                   <th scope="col">Market cap</th>
                   <th scope="col">1j</th>
                   <th scope="col">Beli terakhir</th>
