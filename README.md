@@ -59,7 +59,7 @@ Semua berjalan **100% di browser** (HTML + CSS + JavaScript murni, tanpa server,
 Jika API membalas `429 Too Many Requests`, app otomatis memperlambat refresh ke 30 detik lalu mencoba lagi.
 
 ## Cara kerja Scanner koin KOL
-Scanner berjalan **langsung di browser saat tombol "Scan koin" ditekan** (jendela 30 menit / 1 jam / 2 jam, default 1 jam). Kolscan tidak mengizinkan akses dari browser (CORS), jadi daftar wallet disiapkan GitHub Actions di `data/wallets.json`.
+Scanner berjalan **langsung di browser saat tombol "Scan koin" ditekan** (jendela bisa diatur 0,25–6 jam, default 2 jam). Kolscan tidak mengizinkan akses dari browser (CORS), jadi daftar wallet disiapkan GitHub Actions di `data/wallets.json`.
 
 ```
 GitHub Actions (2x sehari, 00.05 & 12.05 UTC = 07.05 & 19.05 WIB)
@@ -74,12 +74,16 @@ App (tombol "Scan koin", bisa dihentikan dengan "Berhenti")
   5. Kelompokkan per token berakhiran "pump": jumlah wallet pembeli, SOL dibeli,
      wallet yang masih memegang ≥50% pembeliannya
   6. Waktu launching koin = pairCreatedAt paling awal di DexScreener (pair bonding curve pump.fun)
-  7. Filter default "Hanya koin baru launching": koin harus launching DAN dibeli KOL di dalam jendela yang sama (mis. ≤1 jam)
+  7. Filter yang bisa diatur user:
+     - Dibeli dalam (jam), default 2: jendela transaksi KOL yang dipindai
+     - Umur koin maks. (jam), default 24
+     - Min. SOL dibeli KOL, default 2 (total semua wallet KOL dalam jendela)
+     - Masih dipegang KOL (default aktif), min. wallet KOL, maks. market cap
   8. Harga, market cap, % 1 jam dari DexScreener → tampilkan dengan filter
   Jika RPC gagal, app memuat hasil terakhir data/scan.json sebagai cadangan.
 ```
 
-Scan 1 jam untuk 50 wallet biasanya 1–3 menit (banyak wallet menerima transaksi spam/airdrop yang ikut terbaca).
+Scan 2 jam untuk 50 wallet biasanya 2–6 menit (banyak wallet menerima transaksi spam/airdrop yang ikut terbaca).
 
 Scan penuh lewat Actions masih tersedia: **Actions → Scan koin KOL → Run workflow → centang "Scan penuh"** (hasil ke `data/scan.json`).
 
