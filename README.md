@@ -73,7 +73,9 @@ App (tombol "Scan koin", bisa dihentikan dengan "Berhenti")
   4. Swap sederhana SOL → 1 token = BELI, token → SOL = JUAL
   5. Kelompokkan per token berakhiran "pump": jumlah wallet pembeli, SOL dibeli,
      wallet yang masih memegang ≥50% pembeliannya
-  6. Harga, market cap, % 1 jam dari DexScreener → tampilkan dengan filter
+  6. Waktu launching koin = pairCreatedAt paling awal di DexScreener (pair bonding curve pump.fun)
+  7. Filter default "Hanya koin baru launching": koin harus launching DAN dibeli KOL di dalam jendela yang sama (mis. ≤1 jam)
+  8. Harga, market cap, % 1 jam dari DexScreener → tampilkan dengan filter
   Jika RPC gagal, app memuat hasil terakhir data/scan.json sebagai cadangan.
 ```
 
