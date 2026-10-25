@@ -795,3 +795,28 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
 .x-scan-tok img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
 .x-link { border: 0; background: none; padding: 0; color: var(--text-secondary); font: inherit; font-size: 12px; cursor: pointer; text-decoration: underline dotted; }
 #scan-body .pos { color: #16a34a; } #scan-body .neg { color: #dc2626; }
+
+/* brand NasZ di kiri atas */
+.page { position: relative; }
+.x-brand {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: var(--gutter);
+  height: 54px;
+  display: flex;
+  align-items: center;
+  font-family: "Geist", system-ui, sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: light-dark(#0071e3, #2997ff);
+  text-decoration: none;
+  z-index: 21;
+}
+:root[data-theme="light"] .x-brand { color: #0071e3; }
+:root[data-theme="dark"] .x-brand { color: #2997ff; }
+.x-brand:hover { opacity: .85; }
+@media (max-width: 900px) {
+  .x-brand { position: static; height: auto; font-size: 36px; justify-self: start; }
+}
