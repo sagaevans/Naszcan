@@ -87,6 +87,10 @@
             <label>Maks. market cap <select id="scan-mc"><option value="0" selected="">Semua</option><option value="100000">$100K</option><option value="1000000">$1M</option><option value="10000000">$10M</option></select></label>
             <label><input type="checkbox" id="scan-hold" checked=""/> Masih dipegang KOL</label>
           </div>
+          <div class="x-scan-bar">
+            <label>API key Helius (opsional) <input type="password" id="scan-helius" placeholder="Tempel API key gratis dari helius.dev" autocomplete="off" spellcheck="false"/></label>
+            <span class="x-src" id="helius-msg"></span>
+          </div>
           <p class="x-src" id="scan-meta">Tekan Scan koin untuk memindai transaksi wallet KOL sekarang.</p>
           <div class="table-wrap">
             <table>
@@ -226,7 +230,7 @@
     <div class="x-toast" id="toast" role="status" aria-live="polite"></div>
     <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
     <script src="hark.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=20261025h"></script>
   
 
 </body></html>
