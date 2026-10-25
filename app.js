@@ -717,24 +717,140 @@
               "</tr>";
           }).join("");
         }
+        // Scan langsung di browser: daftar wallet dari data/wallets.json (diperbarui GitHub Actions),
+        // transaksi dari Solana RPC publik (CORS diizinkan), harga dari DexScreener.
+        var WALLET_URLS = ["data/wallets.json", "https://raw.githubusercontent.com/sagaevans/Naszcan/main/data/wallets.json"];
+        var SCAN_SKIP = { "So11111111111111111111111111111111111111112": 1, "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": 1, "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB": 1 };
+        var scanRun = 0;
+        function fetchFirst(urls, i) {
+          i = i || 0;
+          if (i >= urls.length) return Promise.reject(new Error("nofile"));
+          return fetch(urls[i] + "?t=" + Date.now(), { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); })
+            .catch(function () { return fetchFirst(urls, i + 1); });
+        }
+        function loadWallets() {
+          return fetchFirst(WALLET_URLS).then(function (j) { if (!j || !j.wallets || !j.wallets.length) throw new Error("x"); return j.wallets; })
+            .catch(function () {
+              return fetchScan().then(function (j) {
+                var m = {}, list = [];
+                (j.wallets || []).forEach(function (w) { if (!m[w.wallet]) { m[w.wallet] = 1; list.push(w); } });
+                j.coins.forEach(function (c) { (c.buyers || []).forEach(function (b) { if (!m[b.wallet]) { m[b.wallet] = 1; list.push({ wallet: b.wallet, rank: b.rank }); } }); });
+                if (!list.length) throw new Error("nowallet");
+                return list.sort(function (x, y) { return x.rank - y.rank; });
+              });
+            });
+        }
+        function rpcRetry(method, params, tries) {
+          tries = tries || 0;
+          return fetch(RPC, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: method, params: params }) })
+            .then(function (r) { if (r.status === 429 || r.status >= 500) throw new Error("rate"); return r.json(); })
+            .then(function (j) { if (j.error) { if (/limit|too many/i.test(j.error.message || "")) throw new Error("rate"); return null; } return j.result; })
+            .catch(function () {
+              if (tries >= 4) return null;
+              return new Promise(function (res) { setTimeout(res, 800 * (tries + 1)); }).then(function () { return rpcRetry(method, params, tries + 1); });
+            });
+        }
+        function pool(items, n, fn) {
+          var i = 0;
+          function worker() { if (i >= items.length) return Promise.resolve(); var k = i++; return Promise.resolve(fn(items[k], k)).then(worker); }
+          var ws = []; for (var w = 0; w < n; w++) ws.push(worker());
+          return Promise.all(ws);
+        }
+        function txDeltas(tx, wallet) {
+          if (!tx || !tx.meta || tx.meta.err) return null;
+          var keys = tx.transaction.message.accountKeys.map(function (k) { return typeof k === "string" ? k : k.pubkey; });
+          var idx = keys.indexOf(wallet), sol = 0, tok = {};
+          if (idx >= 0) sol += (tx.meta.postBalances[idx] - tx.meta.preBalances[idx]) / 1e9;
+          function add(bal, sign) {
+            if (!bal || bal.owner !== wallet) return;
+            var amt = uiAmt(bal);
+            if (bal.mint === SOL_MINT) { sol += sign * amt; return; }
+            tok[bal.mint] = (tok[bal.mint] || 0) + sign * amt;
+          }
+          (tx.meta.preTokenBalances || []).forEach(function (x) { add(x, -1); });
+          (tx.meta.postTokenBalances || []).forEach(function (x) { add(x, 1); });
+          return { sol: sol, tok: tok, time: tx.blockTime };
+        }
+        function liveScan(hours, wallets, onProgress, run) {
+          var since = Math.floor(Date.now() / 1000) - Math.round(hours * 3600);
+          var jobs = [], doneW = 0, doneT = 0, per = {};
+          return pool(wallets, 6, function (w) {
+            if (run !== scanRun) return;
+            return rpcRetry("getSignaturesForAddress", [w.wallet, { limit: 1000 }]).then(function (sigs) {
+              (sigs || []).forEach(function (s) { if (!s.err && s.blockTime && s.blockTime >= since) jobs.push({ w: w, sig: s.signature }); });
+              doneW++; onProgress("Mengambil transaksi wallet " + doneW + "/" + wallets.length + "…");
+            });
+          }).then(function () {
+            if (run !== scanRun) return null;
+            return pool(jobs, 12, function (job) {
+              if (run !== scanRun) return;
+              return rpcRetry("getTransaction", [job.sig, { encoding: "jsonParsed", maxSupportedTransactionVersion: 1, commitment: "confirmed" }]).then(function (tx) {
+                doneT++; if (doneT % 10 === 0 || doneT === jobs.length) onProgress("Membaca transaksi " + doneT + "/" + jobs.length + "…");
+                var d = txDeltas(tx, job.w.wallet); if (!d) return;
+                var mints = Object.keys(d.tok).filter(function (m) { return !SCAN_SKIP[m] && Math.abs(d.tok[m]) > 0; });
+                if (mints.length !== 1) return;
+                var mint = mints[0], amt = d.tok[mint], key = job.w.wallet + "|" + mint;
+                var p = per[key] || (per[key] = { w: job.w, mint: mint, spent: 0, received: 0, bought: 0, sold: 0, first: d.time, last: d.time });
+                if (amt > 0 && d.sol < 0) { p.spent += -d.sol; p.bought += amt; }
+                else if (amt < 0 && d.sol > 0) { p.received += d.sol; p.sold += -amt; }
+                p.first = Math.min(p.first, d.time); p.last = Math.max(p.last, d.time);
+              });
+            });
+          }).then(function () {
+            if (run !== scanRun) return null;
+            var agg = {};
+            Object.keys(per).forEach(function (k) {
+              var p = per[k]; if (p.spent <= 0 || !/pump$/.test(p.mint)) return;
+              var a = agg[p.mint] || (agg[p.mint] = { ca: p.mint, kolWallets: 0, kolHolders: 0, solSpent: 0, solReceived: 0, firstBuy: p.first, lastBuy: p.last, buyers: [] });
+              var held = p.bought > 0 ? Math.max(0, 1 - p.sold / p.bought) : 0;
+              a.kolWallets++; if (held >= 0.5) a.kolHolders++;
+              a.solSpent += p.spent; a.solReceived += p.received;
+              a.firstBuy = Math.min(a.firstBuy, p.first); a.lastBuy = Math.max(a.lastBuy, p.last);
+              a.buyers.push({ wallet: p.w.wallet, rank: p.w.rank, sol: +p.spent.toFixed(3), held: +held.toFixed(2) });
+            });
+            var coins = Object.keys(agg).map(function (k) {
+              var a = agg[k];
+              a.score = a.kolWallets * 10 + a.kolHolders * 8 + Math.log(1 + a.solSpent) / Math.LN10 * 12;
+              return a;
+            }).sort(function (x, y) { return y.score - x.score; }).slice(0, 60);
+            return { generatedAt: new Date().toISOString(), hours: hours, walletsScanned: wallets.length, txParsed: jobs.length, coins: coins, live: true };
+          });
+        }
+        function fillLive(j, meta) {
+          var cas = j.coins.map(function (c) { return c.ca; });
+          if (!cas.length) return Promise.resolve();
+          return fetchBatch(cas).catch(function () { return {}; }).then(function (m) {
+            Object.keys(m || {}).forEach(function (ca) { if (m[ca]) { scanLive[ca] = m[ca]; if (!info[ca]) info[ca] = m[ca]; } });
+            renderScan();
+          });
+        }
         function runScan() {
           var btn = $("scan-btn"), meta = $("scan-meta");
-          btn.disabled = true; btn.textContent = "Memindai…";
-          fetchScan().then(function (j) {
+          if (btn.getAttribute("data-busy")) { scanRun++; btn.removeAttribute("data-busy"); btn.textContent = "Scan koin"; meta.textContent = "Scan dihentikan."; return; }
+          var run = ++scanRun, hours = +($("scan-hours") ? $("scan-hours").value : 1), t0 = Date.now();
+          btn.setAttribute("data-busy", "1"); btn.textContent = "Berhenti";
+          meta.textContent = "Memuat daftar wallet KOL…";
+          var label = hours < 1 ? Math.round(hours * 60) + " menit" : hours + " jam";
+          loadWallets().then(function (wallets) {
+            return liveScan(hours, wallets.slice(0, 100), function (t) { if (run === scanRun) meta.textContent = t; }, run);
+          }).then(function (j) {
+            if (!j || run !== scanRun) return;
             scanData = j; scanLive = {};
-            var gen = new Date(j.generatedAt);
-            meta.textContent = "Hasil scan " + gen.toLocaleString("id-ID", { timeZone: "Asia/Jakarta", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }) + " WIB · " + j.walletsScanned + " wallet · " + j.hours + " jam terakhir · " + j.coins.length + " koin. Mengecek harga live…";
+            var secs = Math.round((Date.now() - t0) / 1000);
+            meta.textContent = "Scan langsung " + new Date().toLocaleTimeString("id-ID", { timeZone: "Asia/Jakarta", hour: "2-digit", minute: "2-digit" }) + " WIB · " + j.walletsScanned + " wallet · " + label + " terakhir · " + j.txParsed + " transaksi · " + j.coins.length + " koin · " + secs + " dtk.";
             renderScan();
-            var cas = j.coins.slice(0, 60).map(function (c) { return c.ca; });
-            var chunks = []; for (var i = 0; i < cas.length; i += 30) chunks.push(cas.slice(i, i + 30));
-            return Promise.all(chunks.map(function (ch) { return fetchBatch(ch).catch(function () { return {}; }); })).then(function (maps) {
-              maps.forEach(function (m) { Object.keys(m || {}).forEach(function (ca) { if (m[ca]) { scanLive[ca] = m[ca]; if (!info[ca]) info[ca] = m[ca]; } }); });
-              meta.textContent = meta.textContent.replace(" Mengecek harga live…", " Harga live diperbarui.");
-              renderScan();
-            });
+            return fillLive(j, meta);
           }).catch(function () {
-            meta.textContent = "Data scan belum tersedia. Pastikan file data/scan.json ada di repo (dibuat oleh GitHub Actions).";
-          }).then(function () { btn.disabled = false; btn.textContent = "Scan koin"; });
+            if (run !== scanRun) return;
+            meta.textContent = "Scan langsung gagal (RPC sibuk atau daftar wallet belum ada). Memuat hasil GitHub Actions terakhir…";
+            return fetchScan().then(function (j) {
+              scanData = j; scanLive = {};
+              meta.textContent = "Hasil GitHub Actions " + new Date(j.generatedAt).toLocaleString("id-ID", { timeZone: "Asia/Jakarta", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }) + " WIB · " + j.coins.length + " koin.";
+              renderScan(); return fillLive(j, meta);
+            }).catch(function () { meta.textContent = "Scan gagal. Coba lagi sebentar lagi."; });
+          }).then(function () {
+            if (run === scanRun) { btn.removeAttribute("data-busy"); btn.textContent = "Scan koin"; }
+          });
         }
         $("scan-btn").addEventListener("click", runScan);
         ["scan-min", "scan-mc", "scan-hold"].forEach(function (id) { $(id).addEventListener("change", renderScan); });
