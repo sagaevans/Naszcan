@@ -6,7 +6,7 @@ Simulator paper trading memecoin Solana (pump.fun) dengan uang virtual dan harga
 - Saldo virtual $100, beli/jual dengan fee & slippage simulasi
 - Harga real-time, grafik candle, watchlist, riwayat, ekspor/impor data
 - Simpan otomatis di browser (localStorage)
-- **Scanner koin KOL**: koin yang dibeli wallet top leaderboard Kolscan dalam 12 jam terakhir (lihat `SCANNER.md`)
+- **Scanner koin KOL**: koin yang dibeli wallet top leaderboard Kolscan dalam 2 jam terakhir (lihat `SCANNER.md`)
 
 ## Pakai
 Aktifkan GitHub Pages: Settings → Pages → Branch `main` / root. Lalu buka `https://<user>.github.io/Naszcan/`.
