@@ -790,6 +790,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
 
 .x-scan-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-bottom: 8px; }
 .x-scan-bar label { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--text-secondary); }
+.x-scan-bar input[type=number] { width: 72px; font: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--stroke-primary); background: var(--fill-primary-on); color: var(--text-primary); }
 .x-scan-bar select { font: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--stroke-primary); background: var(--fill-primary-on); color: var(--text-primary); }
 .x-scan-tok { display: inline-flex; gap: 8px; align-items: center; }
 .x-scan-tok img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
