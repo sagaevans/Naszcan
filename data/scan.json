@@ -1,0 +1,1283 @@
+{
+ "generatedAt": "2026-10-25T07:28:17.253Z",
+ "hours": 2,
+ "source": "kolscan.io/leaderboard (harian)",
+ "walletsScanned": 50,
+ "txParsed": 1485,
+ "tookSec": 98,
+ "coins": [
+  {
+   "ca": "35yjMpJyKAoq3dFzFGqpSsLtUGdBiqC1k6WNcr4upump",
+   "symbol": "BBC",
+   "name": "Big Booty Coin",
+   "pairAddress": "8KTaLAoFDnaPbAp15fcHUbtqKbUS7BLUQhB94dyoWZY5",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/8ktalaofdnapbap15fchubtqkbus7bluqhb94dyowzy5",
+   "priceUsd": null,
+   "marketCap": null,
+   "liquidityUsd": null,
+   "volume24h": 0,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/5O_DaaoXUptIjK6W?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792910182000,
+   "kolWallets": 2,
+   "kolHolders": 1,
+   "solSpent": 4.14,
+   "solReceived": 2.359,
+   "netSol": 1.78,
+   "firstBuy": 1792910202,
+   "lastBuy": 1792913061,
+   "score": 36.5,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 2.277,
+     "held": 0
+    },
+    {
+     "wallet": "H1TLERBQyQzSd5gbvbWwP97GjeL9txzWoN5BK4UG7xYm",
+     "rank": 37,
+     "sol": 1.862,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "9jUhLt5LV7Qitn6CMmXQN2N6NTA2hvASBYg7UHCJpump",
+   "symbol": "BRAIN",
+   "name": "KOL Brain",
+   "pairAddress": "DsbQV1aXtkbdMgm1GuDrVv9GpxveuruNE4NYGDGA6CZi",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/dsbqv1axtkbdmgm1gudrvv9gpxveurune4nygdga6czi",
+   "priceUsd": 0.000005001,
+   "marketCap": 5001.11,
+   "liquidityUsd": null,
+   "volume24h": 1177.67,
+   "change1h": -0.51,
+   "change24h": -0.58,
+   "pairCreatedAt": 1792907997000,
+   "kolWallets": 1,
+   "kolHolders": 1,
+   "solSpent": 10.118,
+   "solReceived": 0,
+   "netSol": 10.118,
+   "firstBuy": 1792907997,
+   "lastBuy": 1792907997,
+   "score": 30.6,
+   "buyers": [
+    {
+     "wallet": "4xY9T1Q7foJzJsJ6YZDSsfp9zkzeZsXnxd45SixduMmr",
+     "rank": 2,
+     "sol": 10.118,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "GNSAsjaU76Qzi2a8cCQejpJL1UzGxw7HuYkakAF8pump",
+   "symbol": "NSFW",
+   "name": "Never Stop Fucking Winning",
+   "pairAddress": "EW6d6AoJLkQg1Uyp1ifZu75LdzYJ4zeuZWcrWR8xvDoB",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/ew6d6aojlkqg1uyp1ifzu75ldzyj4zeuzwcrwr8xvdob",
+   "priceUsd": 0.000002969,
+   "marketCap": 2969.27,
+   "liquidityUsd": null,
+   "volume24h": 85846.85,
+   "change1h": -3.3,
+   "change24h": -23.8,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/66fjfD1fS5c77Tvk?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792905997000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 6.362,
+   "solReceived": 4.45,
+   "netSol": 1.912,
+   "firstBuy": 1792906328,
+   "lastBuy": 1792906488,
+   "score": 30.4,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 3.832,
+     "held": 0
+    },
+    {
+     "wallet": "2kv8X2a9bxnBM8NKLc6BBTX2z13GFNRL4oRotMUJRva9",
+     "rank": 48,
+     "sol": 2.53,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "DJVk1piu8yxyhBs1edwUAL1nzLGN6DMvjuYPhRzapump",
+   "symbol": "PROLAPSE",
+   "name": "Prolapse",
+   "pairAddress": "2SJ95Lgnm4XfTb8qzCcU84QZkFZVA7koY1EaCm4Mvhva",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/2sj95lgnm4xftb8qzccu84qzkfzva7koy1eacm4mvhva",
+   "priceUsd": 0.000004484,
+   "marketCap": 4484.83,
+   "liquidityUsd": null,
+   "volume24h": 127068.65,
+   "change1h": 23.38,
+   "change24h": -1.13,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/J_tPGl6s9yRpSyVR?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792907510000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 5.768,
+   "solReceived": 3.8,
+   "netSol": 1.968,
+   "firstBuy": 1792907535,
+   "lastBuy": 1792908119,
+   "score": 30,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 4.302,
+     "held": 0
+    },
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.467,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "35fWL6pdJqpconRZPrawUAQegw1QF3p2tgN7mzhTpump",
+   "symbol": "PMUP",
+   "name": "PMUP",
+   "pairAddress": "Ang7vjh7KoSScfbuE1ZWW6gAoXf7EcAZLPJzmMdcgwZj",
+   "dexId": "pumpswap",
+   "url": "https://dexscreener.com/solana/ang7vjh7kosscfbue1zww6gaoxf7ecazlpjzmmdcgwzj",
+   "priceUsd": 0.000067,
+   "marketCap": 63326,
+   "liquidityUsd": 20887.93,
+   "volume24h": 492712.67,
+   "change1h": 18.35,
+   "change24h": 63.11,
+   "pairCreatedAt": 1792908447000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 7.527,
+   "solReceived": 6.907,
+   "netSol": 0.62,
+   "firstBuy": 1792908623,
+   "lastBuy": 1792909688,
+   "score": 29.9,
+   "buyers": [
+    {
+     "wallet": "G6fUXjMKPJzCY1rveAE6Qm7wy5U3vZgKDJmN1VPAdiZC",
+     "rank": 23,
+     "sol": 5.009,
+     "held": 0
+    },
+    {
+     "wallet": "2kv8X2a9bxnBM8NKLc6BBTX2z13GFNRL4oRotMUJRva9",
+     "rank": 48,
+     "sol": 2.518,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "8nFMyXCpkfzXspnYHAqsL5FXxgVoE3BvnDq7QNSNpump",
+   "symbol": "ELECT",
+   "name": "Elect",
+   "pairAddress": "3iDmFzAjx25ySQerock9UpwJpvfQP5PyoDwDxbUdq6Mv",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/3idmfzajx25ysqerock9upwjpvfqp5pyodwdxbudq6mv",
+   "priceUsd": 0.000003716,
+   "marketCap": 3716.84,
+   "liquidityUsd": null,
+   "volume24h": 74875.29,
+   "change1h": -2.68,
+   "change24h": -36.15,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/RQq7IApcoe-P4XS_?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792906749000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 3.672,
+   "solReceived": 2.523,
+   "netSol": 1.149,
+   "firstBuy": 1792906778,
+   "lastBuy": 1792907019,
+   "score": 28,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 2.699,
+     "held": 0
+    },
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 0.973,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "AncTNEzWfybjE4RPaGydDBU8ZEGCoaE4B9qxKxQ9pump",
+   "symbol": "GANJIRO",
+   "name": "GanjiroCoin",
+   "pairAddress": "8ft1X8wA2nNcLXmSErvgue3etG1yWi5L4hT3AkpJU4LE",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/8ft1x8wa2nnclxmservgue3etg1ywi5l4ht3akpju4le",
+   "priceUsd": 0.000003254,
+   "marketCap": 3254.17,
+   "liquidityUsd": null,
+   "volume24h": 50115.94,
+   "change1h": 1.27,
+   "change24h": -16.44,
+   "pairCreatedAt": 1792906308000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 3.043,
+   "solReceived": 2.559,
+   "netSol": 0.484,
+   "firstBuy": 1792906450,
+   "lastBuy": 1792907084,
+   "score": 27.3,
+   "buyers": [
+    {
+     "wallet": "2kv8X2a9bxnBM8NKLc6BBTX2z13GFNRL4oRotMUJRva9",
+     "rank": 48,
+     "sol": 1.826,
+     "held": 0
+    },
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.217,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "2cbGGw2dgxfWqyRZ6437Kstd6m54HKh56Ha48fa9pump",
+   "symbol": "JHUN",
+   "name": "jhun hukins",
+   "pairAddress": "FsxqnsghhZeefWycxRuFiv5b4zrXEJSxeAbkTxdYyaZd",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/fsxqnsghhzeefwycxrufiv5b4zrxejsxeabktxdyyazd",
+   "priceUsd": 0.000003085,
+   "marketCap": 3085.06,
+   "liquidityUsd": null,
+   "volume24h": 24800.68,
+   "change1h": -0.13,
+   "change24h": -27.89,
+   "pairCreatedAt": 1792909019000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 2.071,
+   "solReceived": 2.833,
+   "netSol": -0.762,
+   "firstBuy": 1792909031,
+   "lastBuy": 1792909092,
+   "score": 25.8,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 1.181,
+     "held": 0
+    },
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 0.89,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "Bm5XrWw5iksuG7j9SPPdUh4Nn9V9Lr6kRKTYoz3Spump",
+   "symbol": "PEMPFEN",
+   "name": "pempfen",
+   "pairAddress": "EgnfhKiTyVNKmi3srWrrvUQCMnWZBtuWGwzjRvw3ZfS4",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/egnfhkityvnkmi3srwrrvuqcmnwzbtuwgwzjrvw3zfs4",
+   "priceUsd": 0.000002839,
+   "marketCap": 2839.52,
+   "liquidityUsd": null,
+   "volume24h": 22445.96,
+   "change1h": -0.87,
+   "change24h": -26.73,
+   "pairCreatedAt": 1792908032000,
+   "kolWallets": 2,
+   "kolHolders": 0,
+   "solSpent": 2.04,
+   "solReceived": 1.862,
+   "netSol": 0.179,
+   "firstBuy": 1792908053,
+   "lastBuy": 1792908092,
+   "score": 25.8,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.095,
+     "held": 0
+    },
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 0.946,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "UM5qcmjeWgM4hvyHaySU8meAJ1hDYCrE67e6a6mpump",
+   "symbol": "420",
+   "name": "420coin",
+   "pairAddress": "EMqGDHcZRZ531UAjKx2RygSWqcbPwfLHno7SA2MUAWuA",
+   "dexId": "pumpswap",
+   "url": "https://dexscreener.com/solana/emqgdhczrz531uajkx2rygswqcbpwflhno7sa2muawua",
+   "priceUsd": 0.000008693,
+   "marketCap": 8210,
+   "liquidityUsd": 6366.93,
+   "volume24h": 79870.27,
+   "change1h": -81.33,
+   "change24h": -81.33,
+   "pairCreatedAt": 1792910554000,
+   "kolWallets": 1,
+   "kolHolders": 1,
+   "solSpent": 2.614,
+   "solReceived": 0,
+   "netSol": 2.614,
+   "firstBuy": 1792910082,
+   "lastBuy": 1792911158,
+   "score": 24.7,
+   "buyers": [
+    {
+     "wallet": "G6fUXjMKPJzCY1rveAE6Qm7wy5U3vZgKDJmN1VPAdiZC",
+     "rank": 23,
+     "sol": 2.614,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "8m6FqtzkHZePqeCQVRPBuwekeabJmEX8po4Yst7Apump",
+   "symbol": "FLAVIO",
+   "name": "FLÁVIO HIPOTÉTICO",
+   "pairAddress": "Eb1TwEo9yj7imgdNS8dRLwWYUx3XoTDwcSh2fBqRJxTo",
+   "dexId": "pumpswap",
+   "url": "https://dexscreener.com/solana/eb1tweo9yj7imgdns8drlwwyux3xotdwcsh2fbqrjxto",
+   "priceUsd": 0.00001809,
+   "marketCap": 17218,
+   "liquidityUsd": 9681.24,
+   "volume24h": 8816.39,
+   "change1h": 43.71,
+   "change24h": 117,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/yL0gdST1eH10Je_R?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1791917329000,
+   "kolWallets": 1,
+   "kolHolders": 1,
+   "solSpent": 2.05,
+   "solReceived": 0,
+   "netSol": 2.05,
+   "firstBuy": 1792912224,
+   "lastBuy": 1792912274,
+   "score": 21.5,
+   "buyers": [
+    {
+     "wallet": "2T5NgDDidkvhJQg8AHDi74uCFwgp25pYFMRZXBaCUNBH",
+     "rank": 27,
+     "sol": 2.05,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "41oUBz7AcGhxy64Cb5HA7UnaNNeyt32YV3AcwUxTpump",
+   "symbol": "Shitfaced",
+   "name": "Shitfaced",
+   "pairAddress": "3TNwLZ5ZHYGuuu84QVN21DMLhcoZMftbM3q8Qs4eehyp",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/3tnwlz5zhyguuu84qvn21dmlhcozmftbm3q8qs4eehyp",
+   "priceUsd": 0.000004144,
+   "marketCap": 4144.21,
+   "liquidityUsd": null,
+   "volume24h": 7420.11,
+   "change1h": 45.56,
+   "change24h": 28,
+   "pairCreatedAt": 1792907852000,
+   "kolWallets": 1,
+   "kolHolders": 1,
+   "solSpent": 1.044,
+   "solReceived": 0,
+   "netSol": 1.044,
+   "firstBuy": 1792909871,
+   "lastBuy": 1792912729,
+   "score": 21.2,
+   "buyers": [
+    {
+     "wallet": "2T5NgDDidkvhJQg8AHDi74uCFwgp25pYFMRZXBaCUNBH",
+     "rank": 27,
+     "sol": 1.044,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "To52NAV8F3KgXBEmzvmJBHWVZKUFsZaH1o4JZ7tpump",
+   "symbol": "condom",
+   "name": "a safe investment",
+   "pairAddress": "GYndgt1aeiqvzE8HCemzY7utWCucttr7ZE5oiVaxeDH2",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/gyndgt1aeiqvze8hcemzy7utwcucttr7ze5oivaxedh2",
+   "priceUsd": 0.000003133,
+   "marketCap": 3133.01,
+   "liquidityUsd": null,
+   "volume24h": 37462.74,
+   "change1h": -2.42,
+   "change24h": -7.57,
+   "pairCreatedAt": 1792907264000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 5.103,
+   "solReceived": 4.228,
+   "netSol": 0.875,
+   "firstBuy": 1792907271,
+   "lastBuy": 1792907876,
+   "score": 19.4,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 5.103,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "2LCEvsDP5yCsvfh85cuP2EuuDS4ZiNGqcJyGzAw7pump",
+   "symbol": "HUMANITY",
+   "name": "Team Humanity",
+   "pairAddress": "34GMtZZzVGw8pQABSsM4YK16bZQZefrMXRmFfs6xQkrC",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/34gmtzzzvgw8pqabssm4yk16bzqzefrmxrmffs6xqkrc",
+   "priceUsd": 0.000002881,
+   "marketCap": 2881.83,
+   "liquidityUsd": null,
+   "volume24h": 85071.08,
+   "change1h": -20.75,
+   "change24h": -21.16,
+   "pairCreatedAt": 1792909248000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 5.002,
+   "solReceived": 1.023,
+   "netSol": 3.978,
+   "firstBuy": 1792909346,
+   "lastBuy": 1792909466,
+   "score": 19.3,
+   "buyers": [
+    {
+     "wallet": "E7gozEiAPNhpJsdS52amhhN2XCAqLZa7WPrhyR6C8o4S",
+     "rank": 18,
+     "sol": 5.002,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "EzUu4tYyDPUZ6dgf5VvjrdQTqXiE9j7rA3K11DbXpump",
+   "symbol": "HUMANITY",
+   "name": "Team Humanity",
+   "pairAddress": "FViRCPM47vYYw5qD9gvKDUzU3vcCVK5Q2X5NtVgA7rxD",
+   "dexId": "pumpswap",
+   "url": "https://dexscreener.com/solana/fvircpm47vyyw5qd9gvkduzu3vccvk5q2x5ntvga7rxd",
+   "priceUsd": 0.00001183,
+   "marketCap": 10070,
+   "liquidityUsd": 7818.58,
+   "volume24h": 129533.13,
+   "change1h": -63.05,
+   "change24h": -73.54,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/m7QunAAe_WAL2KwY?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792909179000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 5.002,
+   "solReceived": 2.244,
+   "netSol": 2.758,
+   "firstBuy": 1792909168,
+   "lastBuy": 1792909314,
+   "score": 19.3,
+   "buyers": [
+    {
+     "wallet": "E7gozEiAPNhpJsdS52amhhN2XCAqLZa7WPrhyR6C8o4S",
+     "rank": 18,
+     "sol": 5.002,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "7jo5Ru47Edx3nT3vdcudQXADjWrRemzWF9nA4By1pump",
+   "symbol": "DCC",
+   "name": "DacityCoin",
+   "pairAddress": "GVqNy8B9uo92Fp3ND9EA8SmvVEGkhrBViy34yc2Hrx9E",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/gvqny8b9uo92fp3nd9ea8smvvegkhrbviy34yc2hrx9e",
+   "priceUsd": 0.00002063,
+   "marketCap": 20636.41,
+   "liquidityUsd": null,
+   "volume24h": 17069.93,
+   "change1h": -8.87,
+   "change24h": 70.63,
+   "pairCreatedAt": 1792337624000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 6.603,
+   "solReceived": 4.188,
+   "netSol": 2.415,
+   "firstBuy": 1792908092,
+   "lastBuy": 1792908206,
+   "score": 19.2,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 6.603,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "7x3T29Mnxx3HczHJVq7miP1s8mThe9ELH6mg2VMupump",
+   "symbol": "SDFSFSSDSFS",
+   "name": "Sdfsfssdsfs",
+   "pairAddress": "CA1Z8HA6dsU7rEY3wWFQWd1q83TwYX6z7TNhXNo6gqiG",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/ca1z8ha6dsu7rey3wwfqwd1q83twyx6z7tnhxno6gqig",
+   "priceUsd": 0.000002846,
+   "marketCap": 2846.13,
+   "liquidityUsd": null,
+   "volume24h": 0.1,
+   "pairCreatedAt": 1792909408000,
+   "kolWallets": 1,
+   "kolHolders": 1,
+   "solSpent": 0.029,
+   "solReceived": 0,
+   "netSol": 0.029,
+   "firstBuy": 1792909408,
+   "lastBuy": 1792909408,
+   "score": 18.1,
+   "buyers": [
+    {
+     "wallet": "4xY9T1Q7foJzJsJ6YZDSsfp9zkzeZsXnxd45SixduMmr",
+     "rank": 2,
+     "sol": 0.029,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "V5imRVbaYnHgTSnq6dtG9jjcgB5LjUUDCHEgeP3pump",
+   "symbol": "BLUEBALLS",
+   "name": "Blueballs",
+   "pairAddress": "8N5AkSxGxqrG7xPozyhyVvuqr2gHX1M2XfhZmuF8w4Tm",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/8n5aksxgxqrg7xpozyhyvvuqr2ghx1m2xfhzmuf8w4tm",
+   "priceUsd": 0.00000284,
+   "marketCap": 2840.06,
+   "liquidityUsd": null,
+   "volume24h": 50726.06,
+   "change1h": -0.69,
+   "change24h": -17.58,
+   "pairCreatedAt": 1792907248000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 3.299,
+   "solReceived": 2.439,
+   "netSol": 0.859,
+   "firstBuy": 1792907283,
+   "lastBuy": 1792907646,
+   "score": 17.6,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 3.299,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "7zV7kkFkEEtzqAVHtpsrE61MskeNTZ1PT3tCpyC1pump",
+   "symbol": "ELON",
+   "name": "Silvia World's Richest Man ETF",
+   "pairAddress": "9N6CgXW2D6DJ7BhCb8jRQsVjPWWiwkfbHt5xXNycku1E",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/9n6cgxw2d6dj7bhcb8jrqsvjpwwiwkfbht5xxnycku1e",
+   "priceUsd": 0.000003152,
+   "marketCap": 3152.91,
+   "liquidityUsd": null,
+   "volume24h": 62098.96,
+   "change1h": -0.29,
+   "change24h": 3.8,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/GfAg_PH4cGusqEoN?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792908106000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 2.812,
+   "solReceived": 2.881,
+   "netSol": -0.069,
+   "firstBuy": 1792908178,
+   "lastBuy": 1792908669,
+   "score": 16.9,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 2.812,
+     "held": 0.12
+    }
+   ]
+  },
+  {
+   "ca": "8szVa8o9tCnnJpH7CqG3mjiF6wuNMea1Mpappdx9pump",
+   "symbol": "PEPE",
+   "name": "Plump Erotic Peach Empire",
+   "pairAddress": "2eK7h2MpVoQ3NvRQVzUqkm8ZyYDjkca4if2AsB1SW9aM",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/2ek7h2mpvoq3nvrqvzuqkm8zyydjkca4if2asb1sw9am",
+   "priceUsd": null,
+   "marketCap": null,
+   "liquidityUsd": null,
+   "volume24h": 0,
+   "pairCreatedAt": 1792906395000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 2.506,
+   "solReceived": 2.772,
+   "netSol": -0.265,
+   "firstBuy": 1792906625,
+   "lastBuy": 1792907242,
+   "score": 16.5,
+   "buyers": [
+    {
+     "wallet": "2T5NgDDidkvhJQg8AHDi74uCFwgp25pYFMRZXBaCUNBH",
+     "rank": 27,
+     "sol": 2.506,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "CdTk2jeWyMEwbLBkLu22rXpfXQNxgdjU76hyEuhApump",
+   "symbol": "Horny",
+   "name": "Buy if you're horny",
+   "pairAddress": "jXg5QkvDzd2DvKtokUvvADYG6YfnY7HndFJBdJon4KX",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/jxg5qkvdzd2dvktokuvvadyg6yfny7hndfjbdjon4kx",
+   "priceUsd": null,
+   "marketCap": null,
+   "liquidityUsd": null,
+   "volume24h": 0,
+   "pairCreatedAt": 1792906215000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.899,
+   "solReceived": 1.731,
+   "netSol": 0.168,
+   "firstBuy": 1792906236,
+   "lastBuy": 1792906355,
+   "score": 15.5,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 1.899,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "EWoDKhGNC4ugbAJxU83BfyF6ZgAxxLKeWatSNApSpump",
+   "symbol": "All In",
+   "name": "올인",
+   "pairAddress": "43NEkJaTY3uRTTpJ34zMAywTZUqRY7wPD8HGctjUY3Nq",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/43nekjaty3urttpj34zmaywtzuqry7wpd8hgctjuy3nq",
+   "priceUsd": 0.000003067,
+   "marketCap": 3067.51,
+   "liquidityUsd": null,
+   "volume24h": 38457.74,
+   "change1h": -32.04,
+   "change24h": -32.04,
+   "pairCreatedAt": 1792911427000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.571,
+   "solReceived": 1.369,
+   "netSol": 0.201,
+   "firstBuy": 1792911558,
+   "lastBuy": 1792911715,
+   "score": 14.9,
+   "buyers": [
+    {
+     "wallet": "DU323DieHUGPmYamp6A4Ai1V4YSYgRi35mGpzJGrjf7k",
+     "rank": 47,
+     "sol": 1.571,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "eQcV6U6DqYe9xnBKg36mAyJncZBH7BtfMWhA5jhpump",
+   "symbol": "RFQ",
+   "name": "RFQ",
+   "pairAddress": "5biB489s5MtcuMVGPDcQZnP8eq15VqtSfngqSHduiDxd",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/5bib489s5mtcumvgpdcqznp8eq15vqtsfngqshduidxd",
+   "priceUsd": 0.000002926,
+   "marketCap": 2926.99,
+   "liquidityUsd": null,
+   "volume24h": 23984.24,
+   "change1h": -0.17,
+   "change24h": -4.52,
+   "pairCreatedAt": 1792906049000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.35,
+   "solReceived": 1.892,
+   "netSol": -0.542,
+   "firstBuy": 1792906100,
+   "lastBuy": 1792906381,
+   "score": 14.5,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.35,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "3chVDhiH68Naw8Ue3CvFn5hYuAR59CHzTF1i9wGtpump",
+   "symbol": "ILY",
+   "name": "THERE IS NO MOAT",
+   "pairAddress": "8pypNo4mqJ3A3gvTQmxWmGW4JZ739cdB575F15RKGNSh",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/8pypno4mqj3a3gvtqmxwmgw4jz739cdb575f15rkgnsh",
+   "priceUsd": 0.000003085,
+   "marketCap": 3085.18,
+   "liquidityUsd": null,
+   "volume24h": 3274.03,
+   "change24h": -24.56,
+   "pairCreatedAt": 1792907903000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.347,
+   "solReceived": 1.361,
+   "netSol": -0.014,
+   "firstBuy": 1792907910,
+   "lastBuy": 1792907919,
+   "score": 14.4,
+   "buyers": [
+    {
+     "wallet": "5vg7he5HibvsAW86wfiuP6jw7VwKmUAnP6P93mVCdpJu",
+     "rank": 36,
+     "sol": 1.347,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "3GN5hPuqF7i1APpM36qDeE9dGPWBfY4Co5i2aANopump",
+   "symbol": "TOPLESS",
+   "name": "Topless",
+   "pairAddress": "FWXQetRjzfhnWP257tUsdozorKaR9ZLGXF8gTWWbWu2a",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/fwxqetrjzfhnwp257tusdozorkar9zlgxf8gtwwbwu2a",
+   "priceUsd": null,
+   "marketCap": null,
+   "liquidityUsd": null,
+   "volume24h": 0,
+   "pairCreatedAt": 1792906899000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.331,
+   "solReceived": 1.21,
+   "netSol": 0.12,
+   "firstBuy": 1792907051,
+   "lastBuy": 1792907080,
+   "score": 14.4,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 1.331,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "EEqVTixMnzVj8fZT9jvKLKevpYhPJBZuYoVStJKspump",
+   "symbol": "NASDAQ",
+   "name": "NipplesAssSexDickAnalQueer",
+   "pairAddress": "6EuZUZWPWgf99iec12wPCDfWQVzV8wDQ8s2G95gQMbQF",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/6euzuzwpwgf99iec12wpcdfwqvzv8wdq8s2g95gqmbqf",
+   "priceUsd": 0.000002853,
+   "marketCap": 2853.04,
+   "liquidityUsd": null,
+   "volume24h": 11803.09,
+   "change24h": -17.52,
+   "pairCreatedAt": 1792906655000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.322,
+   "solReceived": 1.469,
+   "netSol": -0.148,
+   "firstBuy": 1792906666,
+   "lastBuy": 1792906742,
+   "score": 14.4,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 1.322,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "EarrqMP5Dd8jAPF8vxcgiz2JNDmmCtLzFy9DhD36pump",
+   "symbol": "COID",
+   "name": "COID",
+   "pairAddress": "5Q4om7mubqAhhMZUp7kGcaW2PLXU83CXrRpjCuvxXUTB",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/5q4om7mubqahhmzup7kgcaw2plxu83cxrrpjcuvxxutb",
+   "priceUsd": 0.000002858,
+   "marketCap": 2858.81,
+   "liquidityUsd": null,
+   "volume24h": 6522.84,
+   "change24h": -17.23,
+   "pairCreatedAt": 1792906197000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.217,
+   "solReceived": 0.985,
+   "netSol": 0.232,
+   "firstBuy": 1792906355,
+   "lastBuy": 1792906424,
+   "score": 14.1,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.217,
+     "held": 0.21
+    }
+   ]
+  },
+  {
+   "ca": "FBnQQQkGpCizU7Dz7T62ZzRZZJ49GkhQJSgYM4Ktpump",
+   "symbol": "Kraushuur",
+   "name": "Jush Kraushuur",
+   "pairAddress": "HiGhbYCC5T3PVCB5XscoJryrt7PxX6YCE7TaMsKyfVzG",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/highbycc5t3pvcb5xscojryrt7pxx6yce7tamskyfvzg",
+   "priceUsd": 0.000003107,
+   "marketCap": 3107.54,
+   "liquidityUsd": null,
+   "volume24h": 9109.98,
+   "change1h": -0.96,
+   "change24h": -23.24,
+   "pairCreatedAt": 1792909074000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.181,
+   "solReceived": 0.886,
+   "netSol": 0.295,
+   "firstBuy": 1792909085,
+   "lastBuy": 1792909098,
+   "score": 14.1,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 1.181,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "9iosqvpBhY673ZSprDq5T2UrtF2GhSbn8GQBni3Apump",
+   "symbol": "NSFW",
+   "name": "Never Stop Fucking Winning",
+   "pairAddress": "HczQFfgRRxCNNJJXV4FYuHVccuJm72wMk72rsJ2gxoDb",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/hczqffgrrxcnnjjxv4fyuhvccujm72wmk72rsj2gxodb",
+   "priceUsd": 0.000002848,
+   "marketCap": 2848.6,
+   "liquidityUsd": null,
+   "volume24h": 17057.82,
+   "change24h": -22.53,
+   "pairCreatedAt": 1792906090000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.181,
+   "solReceived": 1.081,
+   "netSol": 0.1,
+   "firstBuy": 1792906137,
+   "lastBuy": 1792906233,
+   "score": 14.1,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 1.181,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "C2WA3Vtme5EUfgSU2tEdjpoLvHNrYfWJxJczwC1ypump",
+   "symbol": "GANJIRO",
+   "name": "GanjiroCoin",
+   "pairAddress": "FkVuwhxbNs2G18Mg2drZ3CUrGxH51oEAvmisTVasd2BH",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/fkvuwhxbns2g18mg2drz3curgxh51oeavmistvasd2bh",
+   "priceUsd": 0.000003049,
+   "marketCap": 3049.24,
+   "liquidityUsd": null,
+   "volume24h": 9606.23,
+   "change24h": -24.49,
+   "pairCreatedAt": 1792906521000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.099,
+   "solReceived": 1.116,
+   "netSol": -0.017,
+   "firstBuy": 1792906536,
+   "lastBuy": 1792906612,
+   "score": 13.9,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.099,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "CKfnhDuXmPir9xyPVrNon8c7NYokYhZ8Zxi7gUZipump",
+   "symbol": "TIT",
+   "name": "Trust in Trump",
+   "pairAddress": "E9g2br6e7PMgUjhpGHm1pfrHLtbYHENeWtLKCBea11xC",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/e9g2br6e7pmgujhpghm1pfrhltbyhenewtlkcbea11xc",
+   "priceUsd": 0.000002875,
+   "marketCap": 2875.72,
+   "liquidityUsd": null,
+   "volume24h": 30134.88,
+   "change24h": -16.38,
+   "pairCreatedAt": 1792907359000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.096,
+   "solReceived": 1.379,
+   "netSol": -0.283,
+   "firstBuy": 1792907384,
+   "lastBuy": 1792907440,
+   "score": 13.9,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.096,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "BArAPFzbZdLkkCbLawBm3XoFMh8atuyJyXRkSCWcpump",
+   "symbol": "ETF",
+   "name": "Enormous Tits Fund",
+   "pairAddress": "2PisrQNWCrp4B1HAr4YL6peBU75AqXizymtHgtE5g1sY",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/2pisrqnwcrp4b1har4yl6pebu75aqxizymthgte5g1sy",
+   "priceUsd": 0.000002851,
+   "marketCap": 2851.72,
+   "liquidityUsd": null,
+   "volume24h": 25249.27,
+   "change1h": -0.31,
+   "change24h": -5.95,
+   "pairCreatedAt": 1792907435000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.072,
+   "solReceived": 1.816,
+   "netSol": -0.744,
+   "firstBuy": 1792907470,
+   "lastBuy": 1792908093,
+   "score": 13.8,
+   "buyers": [
+    {
+     "wallet": "2kv8X2a9bxnBM8NKLc6BBTX2z13GFNRL4oRotMUJRva9",
+     "rank": 48,
+     "sol": 1.072,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "78SCTeQnfwT8gpB9nxuKD8AtMQzQ1C5p3Tq6Za9Apump",
+   "symbol": "vludimir",
+   "name": "vludimir zelenskky",
+   "pairAddress": "CgGMyRYZYPayfAZjHftRRg4JvndQWakDtBEUpaKL84ph",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/cggmyryzypayfazjhftrrg4jvndqwakdtbeupakl84ph",
+   "priceUsd": 0.000003087,
+   "marketCap": 3087.01,
+   "liquidityUsd": null,
+   "volume24h": 13430.31,
+   "change1h": -0.04,
+   "change24h": -19.08,
+   "pairCreatedAt": 1792909053000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 1.013,
+   "solReceived": 1.046,
+   "netSol": -0.034,
+   "firstBuy": 1792909098,
+   "lastBuy": 1792909106,
+   "score": 13.6,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 1.013,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "2Fqti1ZWxQGEBWfFFXdsKGVcJjFqYYuvbxtAxfoApump",
+   "symbol": "Gooncoin",
+   "name": "Gooncoin",
+   "pairAddress": "9M3bep756cqxEG7afp9MFMkaoxidsX7ZYBDVJSKqcGtq",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/9m3bep756cqxeg7afp9mfmkaoxidsx7zybdvjskqcgtq",
+   "priceUsd": 0.000002845,
+   "marketCap": 2845.67,
+   "liquidityUsd": null,
+   "volume24h": 14847.19,
+   "change24h": -22.21,
+   "pairCreatedAt": 1792907149000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 0.975,
+   "solReceived": 1.29,
+   "netSol": -0.315,
+   "firstBuy": 1792907169,
+   "lastBuy": 1792907220,
+   "score": 13.5,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 0.975,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "24iApyUZgg4YKErbUFzp3DxYnSVYFmP1Dh2NCLHApump",
+   "symbol": "PROLAPSE",
+   "name": "Prolapse",
+   "pairAddress": "Dbo641qfukFvryJjhBcpw1wymLeoetajAWrZboBV1gdJ",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/dbo641qfukfvryjjhbcpw1wymleoetajawrzbobv1gdj",
+   "priceUsd": 0.000002843,
+   "marketCap": 2843.9,
+   "liquidityUsd": null,
+   "volume24h": 19598.44,
+   "change24h": -26.58,
+   "pairCreatedAt": 1792907853000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 0.973,
+   "solReceived": 0.951,
+   "netSol": 0.021,
+   "firstBuy": 1792907901,
+   "lastBuy": 1792907905,
+   "score": 13.5,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 0.973,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "ehZGQhtnVNhUfubPzkUE6kMtMpYf9dr5N5qeKcnpump",
+   "symbol": "HUMANITY",
+   "name": "Team Humanity",
+   "pairAddress": "mnw8YmNtNzWzpw8K5p13rW81H2e1AyScAejkfrq5cU8",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/mnw8ymntnzwzpw8k5p13rw81h2e1ayscaejkfrq5cu8",
+   "priceUsd": 0.00000285,
+   "marketCap": 2850.84,
+   "liquidityUsd": null,
+   "volume24h": 23823.74,
+   "change1h": -5.17,
+   "change24h": -34.14,
+   "pairCreatedAt": 1792909352000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 0.946,
+   "solReceived": 1.31,
+   "netSol": -0.364,
+   "firstBuy": 1792909366,
+   "lastBuy": 1792909478,
+   "score": 13.5,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 0.946,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "CXFsBNAooDZSTDp8WmqhB4qEF8rvishDPzo5eBA1pump",
+   "symbol": "TOPLESS",
+   "name": "Topless",
+   "pairAddress": "D4zstSGAMzMvs3S5eub5NyREzFXFzYkq1uPdPe7oPRDE",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/d4zstsgamzmvs3s5eub5nyrezfxfzykq1updpe7oprde",
+   "priceUsd": null,
+   "marketCap": null,
+   "liquidityUsd": null,
+   "volume24h": 0,
+   "pairCreatedAt": 1792907013000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 0.946,
+   "solReceived": 0.911,
+   "netSol": 0.035,
+   "firstBuy": 1792907037,
+   "lastBuy": 1792907063,
+   "score": 13.5,
+   "buyers": [
+    {
+     "wallet": "4yo9CUuTBbds9NFhZd4MzPiZZkUvveXdTnAH8qMsE8ku",
+     "rank": 6,
+     "sol": 0.946,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "E99Y9n8KUjoDhJgYdxRvkEhWJQdoQn52fPXGmJWRpump",
+   "symbol": "AGT",
+   "name": "ALLIGATOR",
+   "pairAddress": "G6d85mbrJDGst7hvxHreeA8Luc3EDdLtQkASx2HKXo36",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/g6d85mbrjdgst7hvxhreea8luc3eddltqkasx2hkxo36",
+   "priceUsd": 0.000003057,
+   "marketCap": 3057.18,
+   "liquidityUsd": null,
+   "volume24h": 8943.22,
+   "change24h": -21.02,
+   "pairCreatedAt": 1792909149000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 0.887,
+   "solReceived": 0.672,
+   "netSol": 0.216,
+   "firstBuy": 1792909181,
+   "lastBuy": 1792909192,
+   "score": 13.3,
+   "buyers": [
+    {
+     "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+     "rank": 19,
+     "sol": 0.887,
+     "held": 0
+    }
+   ]
+  },
+  {
+   "ca": "EwX2T1p2PmgTsSq2Bi6XtQYxPC5krR4P2fxPfN4Qpump",
+   "symbol": "███",
+   "name": "███",
+   "pairAddress": "9sY4Amm2RFpsBQ1qgCQTxcjfvhmfJ9K4d2J5xfM1k75M",
+   "dexId": "pumpswap",
+   "url": "https://dexscreener.com/solana/9sy4amm2rfpsbq1qgcqtxcjfvhmfj9k4d2j5xfm1k75m",
+   "priceUsd": 0.000585,
+   "marketCap": 569574,
+   "liquidityUsd": 73059.55,
+   "volume24h": 1887921.86,
+   "change1h": -15,
+   "change24h": 263,
+   "imageUrl": "https://cdn.dexscreener.com/cms/images/HZqHa5V-uNTn41jg?width=800&height=800&quality=95&format=auto",
+   "pairCreatedAt": 1792812336000,
+   "kolWallets": 1,
+   "kolHolders": 1,
+   "solSpent": 0.03,
+   "solReceived": 0,
+   "netSol": 0.03,
+   "firstBuy": 1792913185,
+   "lastBuy": 1792913185,
+   "score": 12.9,
+   "buyers": [
+    {
+     "wallet": "2T5NgDDidkvhJQg8AHDi74uCFwgp25pYFMRZXBaCUNBH",
+     "rank": 27,
+     "sol": 0.03,
+     "held": 1
+    }
+   ]
+  },
+  {
+   "ca": "3uYNnjF3jVautFx9Hmz78B3gJF2jFAcRnC7H2zLFpump",
+   "symbol": "TITS",
+   "name": "This Is The Sendor",
+   "pairAddress": "Bxxdn9jr2KkJD3ykQSKV9Ytho47wi5LH29j1Jx5tsYjH",
+   "dexId": "pumpfun",
+   "url": "https://dexscreener.com/solana/bxxdn9jr2kkjd3ykqskv9ytho47wi5lh29j1jx5tsyjh",
+   "priceUsd": null,
+   "marketCap": null,
+   "liquidityUsd": null,
+   "volume24h": 0,
+   "pairCreatedAt": 1792905780000,
+   "kolWallets": 1,
+   "kolHolders": 0,
+   "solSpent": 0.63,
+   "solReceived": 1.123,
+   "netSol": -0.493,
+   "firstBuy": 1792906008,
+   "lastBuy": 1792906083,
+   "score": 12.5,
+   "buyers": [
+    {
+     "wallet": "DYmsQudNqJyyDvq86XmzAvrU9T7xwfQEwh6gPQw9TPNF",
+     "rank": 10,
+     "sol": 0.63,
+     "held": 0
+    }
+   ]
+  }
+ ]
+}
