@@ -692,14 +692,17 @@
           var body = $("scan-body"); if (!body) return;
           if (!scanData) { body.innerHTML = ""; return; }
           var min = +$("scan-min").value, mc = +$("scan-mc").value, hold = $("scan-hold").checked;
+          var onlyNew = $("scan-new") && $("scan-new").checked;
+          var newSince = (scanData.generatedAt ? Date.parse(scanData.generatedAt) / 1000 : Date.now() / 1000) - (scanData.hours || 1) * 3600;
           var rows = scanData.coins.filter(function (c) {
             var live = scanLive[c.ca] || {}, cap = live.marketCap != null ? live.marketCap : live.fdv != null ? live.fdv : c.marketCap;
             if (c.kolWallets < min) return false;
+            if (onlyNew && scanData.live && !(c.launchedAt && c.launchedAt >= newSince)) return false;
             if (hold && !(c.kolHolders > 0)) return false;
             if (mc && cap != null && cap > mc) return false;
             return true;
           });
-          if (!rows.length) { body.innerHTML = '<tr><td colspan="7" class="x-src">Tidak ada koin yang cocok dengan filter. Coba longgarkan filter.</td></tr>'; return; }
+          if (!rows.length) { body.innerHTML = '<tr><td colspan="8" class="x-src">Tidak ada koin yang cocok dengan filter. Coba longgarkan filter.</td></tr>'; return; }
           body.innerHTML = rows.slice(0, 30).map(function (c) {
             var live = scanLive[c.ca] || {};
             var cap = live.marketCap != null ? live.marketCap : live.fdv != null ? live.fdv : c.marketCap;
@@ -708,6 +711,7 @@
             var img = live.imageUrl || c.imageUrl;
             return "<tr>" +
               '<td><span class="x-scan-tok">' + (img ? '<img src="' + esc(img) + '" alt="" loading="lazy"/>' : "") + "<span><b>" + esc(sym) + '</b><br/><button type="button" class="x-link" data-copy="' + esc(c.ca) + '">' + esc(short(c.ca)) + "</button></span></span></td>" +
+              "<td>" + (c.launchedAt ? relTime(c.launchedAt) : "—") + "</td>" +
               "<td>" + c.kolWallets + (c.kolHolders ? ' <span class="x-src">(' + c.kolHolders + " pegang)</span>" : "") + "</td>" +
               "<td>" + (+c.solSpent).toFixed(2) + " SOL</td>" +
               "<td>" + fmtBig(cap) + "</td>" +
@@ -812,9 +816,28 @@
               var a = agg[k];
               a.score = a.kolWallets * 10 + a.kolHolders * 8 + Math.log(1 + a.solSpent) / Math.LN10 * 12;
               return a;
-            }).sort(function (x, y) { return y.score - x.score; }).slice(0, 60);
-            return { generatedAt: new Date().toISOString(), hours: hours, walletsScanned: wallets.length, txParsed: jobs.length, coins: coins, live: true };
+            }).sort(function (x, y) { return y.score - x.score; });
+            onProgress("Mengecek waktu launching " + coins.length + " koin…");
+            return launchTimes(coins.map(function (c) { return c.ca; })).then(function (lt) {
+              coins.forEach(function (c) { c.launchedAt = lt[c.ca] || null; });
+              return { generatedAt: new Date().toISOString(), hours: hours, walletsScanned: wallets.length, txParsed: jobs.length, coins: coins, live: true };
+            });
           });
+        }
+        // Waktu launching = pairCreatedAt paling awal dari semua pair token (pair bonding curve pump.fun)
+        function launchTimes(cas) {
+          var chunks = []; for (var i = 0; i < cas.length; i += 30) chunks.push(cas.slice(i, i + 30));
+          var out = {};
+          return pool(chunks, 3, function (ch) {
+            return fetch(DS + ch.join(",")).then(function (r) { return r.json(); }).then(function (arr) {
+              (Array.isArray(arr) ? arr : []).forEach(function (p) {
+                var ca = p.baseToken && p.baseToken.address, t = p.pairCreatedAt;
+                if (!ca || !t) return;
+                t = Math.floor(t / 1000);
+                if (!out[ca] || t < out[ca]) out[ca] = t;
+              });
+            }).catch(function () {});
+          }).then(function () { return out; });
         }
         function fillLive(j, meta) {
           var cas = j.coins.map(function (c) { return c.ca; });
@@ -853,7 +876,7 @@
           });
         }
         $("scan-btn").addEventListener("click", runScan);
-        ["scan-min", "scan-mc", "scan-hold"].forEach(function (id) { $(id).addEventListener("change", renderScan); });
+        ["scan-min", "scan-mc", "scan-hold", "scan-new", "scan-hours"].forEach(function (id) { $(id).addEventListener("change", renderScan); });
         document.addEventListener("click", function (e) {
           var b = e.target.closest && e.target.closest("[data-scroll]"); if (!b) return;
           var el = $(b.getAttribute("data-scroll")); if (el) setTimeout(function () { el.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
