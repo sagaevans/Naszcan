@@ -2,8 +2,13 @@ name: Scan koin KOL
 
 on:
   schedule:
-    - cron: "15 * * * *"   # tiap jam (menit ke-15)
-  workflow_dispatch: {}
+    - cron: "5 0,12 * * *"   # 2x sehari (07.05 & 19.05 WIB): hanya perbarui daftar wallet
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Scan penuh (bukan hanya daftar wallet)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -24,7 +29,8 @@ jobs:
       - name: Jalankan scanner
         env:
           RPC_URL: ${{ secrets.RPC_URL }}   # opsional (mis. Helius). Kosong = publicnode
-          HOURS: "2"
+          HOURS: "1"
+          WALLETS_ONLY: ${{ github.event_name == 'schedule' || inputs.full != true }}
           MAX_WALLETS: "100"
           MAX_TX_PER_WALLET: "500"
         run: node scanner/scan.mjs
@@ -32,6 +38,6 @@ jobs:
         run: |
           git config user.name "naszcan-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/scan.json
+          git add data/
           git diff --cached --quiet || git commit -m "scan: $(date -u +%Y-%m-%dT%H:%MZ)"
           git push
