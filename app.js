@@ -674,7 +674,7 @@
 
         // ---------- scanner koin KOL ----------
         var SCAN_URLS = ["data/scan.json", "https://raw.githubusercontent.com/sagaevans/Naszcan/main/data/scan.json"];
-        var scanData = null, scanLive = {};
+        var scanData = null, scanLive = {}, scanShown = [];
         function fetchScan(i) {
           i = i || 0;
           if (i >= SCAN_URLS.length) return Promise.reject(new Error("noscan"));
@@ -704,6 +704,7 @@
             if (mc && cap != null && cap > mc) return false;
             return true;
           });
+          scanShown = rows;
           if (!rows.length) { body.innerHTML = '<tr><td colspan="8" class="x-src">Tidak ada koin yang cocok dengan filter. Coba longgarkan filter.</td></tr>'; return; }
           body.innerHTML = rows.slice(0, 30).map(function (c) {
             var live = scanLive[c.ca] || {};
@@ -847,8 +848,73 @@
           return fetchBatch(cas).catch(function () { return {}; }).then(function (m) {
             Object.keys(m || {}).forEach(function (ca) { if (m[ca]) { scanLive[ca] = m[ca]; if (!info[ca]) info[ca] = m[ca]; } });
             renderScan();
+            trackAdd(scanShown);
           });
         }
+        // ---------- pelacak performa koin hasil scan (+10 & +60 menit) ----------
+        var TRACK_KEY = "naszcan-track-v1", track = [];
+        try { if (CAN_STORE) track = JSON.parse(localStorage.getItem(TRACK_KEY) || "[]") || []; } catch (e) { track = []; }
+        function trackSave() { try { if (CAN_STORE) localStorage.setItem(TRACK_KEY, JSON.stringify(track.slice(-200))); } catch (e) {} }
+        function trackAdd(rows) {
+          var now = Date.now(), added = 0;
+          (rows || []).forEach(function (c) {
+            var live = scanLive[c.ca] || {}; if (live.price == null) return;
+            if (track.some(function (t) { return t.ca === c.ca && now - t.t0 < 3600e3; })) return;
+            var cap = live.marketCap != null ? live.marketCap : live.fdv;
+            track.push({ ca: c.ca, symbol: live.symbol || c.symbol || short(c.ca), t0: now, p0: live.price, mc0: cap, p10: null, p60: null, max: live.price, min: live.price, last: live.price, lastT: now });
+            added++;
+          });
+          if (added) { track = track.slice(-200); trackSave(); renderTrack(); }
+        }
+        function pct(a, b) { return a != null && b ? (a / b - 1) * 100 : null; }
+        function trackTick() {
+          var now = Date.now();
+          var act = track.filter(function (t) { return now - t.t0 < 70 * 60e3 && (t.p10 == null || t.p60 == null); });
+          if (!act.length) { renderTrack(); return; }
+          var cas = act.map(function (t) { return t.ca; }).filter(function (v, i, a) { return a.indexOf(v) === i; });
+          fetchBatch(cas).then(function (m) {
+            act.forEach(function (t) {
+              var l = m[t.ca]; if (!l || l.price == null) return;
+              var age = (now - t.t0) / 60e3, p = l.price;
+              t.last = p; t.lastT = now; if (p > t.max) t.max = p; if (p < t.min) t.min = p;
+              if (t.p10 == null && age >= 10 && age < 15) t.p10 = p;
+              if (t.p60 == null && age >= 60 && age < 70) t.p60 = p;
+            });
+            trackSave(); renderTrack();
+          }).catch(function () {});
+        }
+        function pctCell(v, miss) {
+          if (v == null) return '<td class="x-src">' + (miss ? "terlewat" : "menunggu") + "</td>";
+          return '<td class="' + (v > 0 ? "pos" : v < 0 ? "neg" : "") + '">' + fmtPct(v) + "</td>";
+        }
+        function renderTrack() {
+          var body = $("track-body"), sum = $("track-sum"); if (!body) return;
+          var now = Date.now();
+          if (!track.length) { body.innerHTML = '<tr><td colspan="7" class="x-src">Belum ada data. Koin yang lolos filter akan dicatat otomatis setelah Scan koin.</td></tr>'; sum.textContent = ""; return; }
+          body.innerHTML = track.slice().reverse().slice(0, 50).map(function (t) {
+            var age = (now - t.t0) / 60e3;
+            return "<tr><td><b>" + esc(t.symbol) + '</b><br/><button type="button" class="x-link" data-copy="' + esc(t.ca) + '">' + esc(short(t.ca)) + "</button></td>" +
+              "<td>" + new Date(t.t0).toLocaleString("id-ID", { timeZone: "Asia/Jakarta", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" }) + "</td>" +
+              "<td>" + fmtBig(t.mc0) + "</td>" +
+              pctCell(pct(t.p10, t.p0), age >= 15) + pctCell(pct(t.p60, t.p0), age >= 70) +
+              pctCell(pct(t.max, t.p0), false) +
+              '<td><button class="x-b x-b--sm" type="button" data-load="' + esc(t.ca) + '" data-scroll="trade">Muat</button></td></tr>';
+          }).join("");
+          function stat(key) {
+            var v = track.map(function (t) { return pct(t[key], t.p0); }).filter(function (x) { return x != null; });
+            if (!v.length) return null;
+            var up = v.filter(function (x) { return x > 0; }).length, big = v.filter(function (x) { return x >= 100; }).length;
+            v.sort(function (a, b) { return a - b; });
+            return { n: v.length, up: Math.round(up / v.length * 100), big: big, med: v[Math.floor(v.length / 2)] };
+          }
+          var a = stat("p10"), b = stat("p60"), txt = track.length + " koin tercatat.";
+          if (a) txt += " +10 mnt: " + a.n + " koin, " + a.up + "% naik, median " + fmtPct(a.med) + ", " + a.big + " koin ≥ +100%.";
+          if (b) txt += " +60 mnt: " + b.n + " koin, " + b.up + "% naik, median " + fmtPct(b.med) + ", " + b.big + " koin ≥ +100%.";
+          sum.textContent = txt;
+        }
+        setInterval(trackTick, 60e3);
+        $("track-clear").addEventListener("click", function () { track = []; trackSave(); renderTrack(); });
+        renderTrack(); trackTick();
         function runScan() {
           var btn = $("scan-btn"), meta = $("scan-meta");
           if (btn.getAttribute("data-busy")) { scanRun++; btn.removeAttribute("data-busy"); btn.textContent = "Scan koin"; meta.textContent = "Scan dihentikan."; return; }
