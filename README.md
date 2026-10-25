@@ -75,6 +75,7 @@ App (tombol "Scan koin", bisa dihentikan dengan "Berhenti")
      wallet yang masih memegang ≥50% pembeliannya
   6. Waktu launching koin = pairCreatedAt paling awal di DexScreener (pair bonding curve pump.fun)
   7. Filter yang bisa diatur user:
+     - Maks. wallet, default 50: berapa wallet teratas leaderboard yang dipindai (lebih sedikit = lebih cepat)
      - Dibeli dalam (jam), default 2: jendela transaksi KOL yang dipindai
      - Umur koin maks. (jam), default 24
      - Min. SOL dibeli KOL, default 2 (total semua wallet KOL dalam jendela)
