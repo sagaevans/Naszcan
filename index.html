@@ -107,6 +107,31 @@
           <p class="x-src">Bukan saran finansial. Memecoin sangat berisiko; gunakan untuk latihan di simulator.</p>
         </section>
 
+        <section class="section" id="pelacak" data-nav="Pelacak">
+          <div class="head">
+            <h2>Pelacak hasil scan</h2>
+            <p class="head__sub">Setiap koin yang lolos filter dicatat harganya saat scan, lalu dicek lagi 10 dan 60 menit kemudian. Halaman harus tetap terbuka supaya pengecekan berjalan; yang terlewat ditandai "terlewat". Kolom Maks = kenaikan tertinggi selama halaman terbuka.</p>
+          </div>
+          <p class="x-src" id="track-sum"></p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Token</th>
+                  <th scope="col">Waktu scan (WIB)</th>
+                  <th scope="col">MC saat scan</th>
+                  <th scope="col">+10 mnt</th>
+                  <th scope="col">+60 mnt</th>
+                  <th scope="col">Maks</th>
+                  <th scope="col"><span class="fineprint">Aksi</span></th>
+                </tr>
+              </thead>
+              <tbody id="track-body"></tbody>
+            </table>
+          </div>
+          <p><button class="x-b x-b--sm" type="button" id="track-clear">Hapus riwayat pelacak</button></p>
+        </section>
+
         <section class="section" id="posisi" data-nav="Posisi">
           <div class="head">
             <h2>Posisi terbuka</h2>
