@@ -694,6 +694,7 @@
           var min = +$("scan-min").value, mc = +$("scan-mc").value, hold = $("scan-hold").checked;
           var ageH = +($("scan-age") && $("scan-age").value) || 0, minSol = +($("scan-minsol") && $("scan-minsol").value) || 0;
           var newSince = Date.now() / 1000 - ageH * 3600;
+          var topMax = +($("scan-top") && $("scan-top").value) || 0;
           var rows = scanData.coins.filter(function (c) {
             var live = scanLive[c.ca] || {}, cap = live.marketCap != null ? live.marketCap : live.fdv != null ? live.fdv : c.marketCap;
             if (c.kolWallets < min) return false;
@@ -702,10 +703,11 @@
             if (minSol > 0 && !(+c.solSpent >= minSol)) return false;
             if (hold && !(c.kolHolders > 0)) return false;
             if (mc && cap != null && cap > mc) return false;
+            if (topMax > 0 && c.topHolder != null && c.topHolder > topMax) return false;
             return true;
           });
           scanShown = rows;
-          if (!rows.length) { body.innerHTML = '<tr><td colspan="8" class="x-src">Tidak ada koin yang cocok dengan filter. Coba longgarkan filter.</td></tr>'; return; }
+          if (!rows.length) { body.innerHTML = '<tr><td colspan="9" class="x-src">Tidak ada koin yang cocok dengan filter. Coba longgarkan filter.</td></tr>'; return; }
           body.innerHTML = rows.slice(0, 30).map(function (c) {
             var live = scanLive[c.ca] || {};
             var cap = live.marketCap != null ? live.marketCap : live.fdv != null ? live.fdv : c.marketCap;
@@ -717,6 +719,7 @@
               "<td>" + (c.launchedAt ? relTime(c.launchedAt) : "—") + "</td>" +
               "<td>" + c.kolWallets + (c.kolHolders ? ' <span class="x-src">(' + c.kolHolders + " pegang)</span>" : "") + "</td>" +
               "<td>" + (+c.solSpent).toFixed(2) + " SOL</td>" +
+              '<td class="' + (c.topHolder == null ? "x-src" : c.topHolder > 15 ? "neg" : "pos") + '">' + (c.topHolder != null ? c.topHolder.toFixed(1) + "%" : c.topHolder === undefined && c._thBusy ? "cek…" : "?") + "</td>" +
               "<td>" + fmtBig(cap) + "</td>" +
               '<td class="' + (ch > 0 ? "pos" : ch < 0 ? "neg" : "") + '">' + fmtPct(ch) + "</td>" +
               "<td>" + relTime(c.lastBuy) + "</td>" +
@@ -848,8 +851,49 @@
           return fetchBatch(cas).catch(function () { return {}; }).then(function (m) {
             Object.keys(m || {}).forEach(function (ca) { if (m[ca]) { scanLive[ca] = m[ca]; if (!info[ca]) info[ca] = m[ca]; } });
             renderScan();
-            trackAdd(scanShown);
+            return checkHolders(scanShown);
+          }).then(function () { renderScan(); trackAdd(scanShown); });
+        }
+        // ---------- holder terbesar (tanpa bonding curve / pool) ----------
+        // getTokenLargestAccounts tidak tersedia di PublicNode gratis → pakai RPC publik Solana.
+        var HOLDER_RPC = "https://api.mainnet-beta.solana.com", SYS_PROG = "11111111111111111111111111111111";
+        function rpcAt(url, method, params) {
+          return fetchJSON(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: method, params: params }) })
+            .then(function (j) { if (j.error) throw new Error("RPC: " + (j.error.message || "error")); return j.result; });
+        }
+        function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+        function topHolderPct(ca) {
+          var largest, supply;
+          return rpcAt(HOLDER_RPC, "getTokenLargestAccounts", [ca]).then(function (r) {
+            largest = (r && r.value || []).slice(0, 8);
+            return rpcAt(HOLDER_RPC, "getTokenSupply", [ca]).then(function (s) { supply = +s.value.uiAmountString; }).catch(function () { supply = 1e9; });
+          }).then(function () {
+            if (!largest.length || !supply) return null;
+            return rpc("getMultipleAccounts", [largest.map(function (a) { return a.address; }), { encoding: "jsonParsed" }]).then(function (r) {
+              var owners = (r.value || []).map(function (a) { try { return a.data.parsed.info.owner; } catch (e) { return null; } });
+              return rpc("getMultipleAccounts", [owners.map(function (o) { return o || SYS_PROG; }), { encoding: "base64", dataSlice: { offset: 0, length: 0 } }]).then(function (r2) {
+                var info = r2.value || [];
+                for (var i = 0; i < largest.length; i++) {
+                  var oi = info[i];
+                  // pemilik akun program (bonding curve pump.fun, pool PumpSwap/Raydium) dilewati; wallet biasa dimiliki System Program
+                  if (oi && oi.owner && oi.owner !== SYS_PROG) continue;
+                  return (+largest[i].uiAmountString || +largest[i].uiAmount || 0) / supply * 100;
+                }
+                return 0;
+              });
+            });
           });
+        }
+        function checkHolders(rows) {
+          var list = (rows || []).filter(function (c) { return c.topHolder === undefined; }).slice(0, 15);
+          var i = 0;
+          function next() {
+            if (i >= list.length) return Promise.resolve();
+            var c = list[i++]; c._thBusy = true; renderScan();
+            return topHolderPct(c.ca).then(function (p) { c.topHolder = p; }, function () { c.topHolder = null; })
+              .then(function () { c._thBusy = false; renderScan(); return sleep(400); }).then(next);
+          }
+          return next();
         }
         // ---------- pelacak performa koin hasil scan (+10 & +60 menit) ----------
         var TRACK_KEY = "naszcan-track-v1", track = [];
@@ -945,7 +989,7 @@
           });
         }
         $("scan-btn").addEventListener("click", runScan);
-        ["scan-min", "scan-mc", "scan-hold", "scan-age", "scan-minsol"].forEach(function (id) { $(id).addEventListener("change", renderScan); $(id).addEventListener("input", renderScan); });
+        ["scan-min", "scan-mc", "scan-hold", "scan-age", "scan-minsol", "scan-top"].forEach(function (id) { $(id).addEventListener("change", renderScan); $(id).addEventListener("input", renderScan); });
         document.addEventListener("click", function (e) {
           var b = e.target.closest && e.target.closest("[data-scroll]"); if (!b) return;
           var el = $(b.getAttribute("data-scroll")); if (el) setTimeout(function () { el.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
