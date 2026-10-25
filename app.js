@@ -914,7 +914,8 @@
 
         setInterval(renderStatus, 1000);
         active = SLING;
-        $("ca-input").value = SLING;
+        try { var qca = new URLSearchParams(location.search).get("ca"); if (qca && validCA(qca.trim())) active = qca.trim(); } catch (e) {}
+        $("ca-input").value = active;
         renderAll();
         refresh();
       })();
