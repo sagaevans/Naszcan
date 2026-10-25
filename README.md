@@ -101,6 +101,16 @@ Detail singkat ada juga di [`SCANNER.md`](SCANNER.md).
 
 **Holder terbesar maks. (%)** (default 15) menyembunyikan koin yang satu wallet-nya memegang lebih dari batas itu. Akun milik program (bonding curve pump.fun, pool PumpSwap/Raydium) dilewati, jadi yang dihitung hanya wallet biasa. Data dari `getTokenLargestAccounts` di RPC publik Solana (`api.mainnet-beta.solana.com`, karena PublicNode gratis tidak menyediakannya). RPC ini sering membatasi permintaan; jika gagal, kolom menampilkan "?" dan koin tetap ditampilkan. Isi 0 untuk mematikan filter.
 
+### API key Helius (opsional, disarankan)
+
+RPC publik sering penuh sehingga kolom holder keluar "?" dan scan lambat. Isi kolom **API key Helius** di Scanner untuk memakai RPC pribadi:
+
+1. Daftar gratis di https://dashboard.helius.dev (paket Free: 1 juta kredit/bulan, tanpa kartu).
+2. Salin **API Key** dari dashboard, tempel ke kolom API key Helius, lalu ketuk di luar kolom.
+3. Status "Memakai RPC Helius" berarti key aktif; holder yang tadi "?" dicek ulang otomatis.
+
+Key hanya disimpan di localStorage browser kamu dan tidak pernah dikirim ke repo. Karena dipakai langsung dari browser, key tetap terlihat di tab Network, jadi pakai key khusus dan (disarankan) batasi domain di dashboard Helius ke `sagaevans.github.io`. Kosongkan kolom untuk kembali ke RPC publik.
+
 ### Pelacak hasil scan (+10 & +60 menit)
 
 Setiap koin yang lolos filter setelah **Scan koin** dicatat otomatis (harga & market cap saat scan). Selama halaman terbuka, harga dicek tiap menit dan disimpan pada menit ke-10 dan ke-60, plus kenaikan tertinggi (Maks). Ringkasan menampilkan berapa persen koin naik, median perubahan, dan jumlah koin yang ≥ +100%. Data tersimpan di browser (`naszcan-track-v1`, maks. 200 koin). Jika halaman ditutup saat jadwal cek, kolom ditandai "terlewat". Tujuannya mengumpulkan data sendiri untuk menguji apakah sinyal KOL benar-benar menguntungkan.
