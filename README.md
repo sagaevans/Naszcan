@@ -29,7 +29,7 @@ Simulator **paper trading** memecoin Solana (pump.fun) dengan **uang virtual** d
 - **Grafik**: embed DexScreener, atau grafik candle sendiri (GeckoTerminal) dengan timeframe 1m / 5m / 15m / 1j / 4j.
 - **Posisi terbuka, P/L, riwayat transaksi, watchlist.**
 - **Simpan otomatis** di browser (localStorage) + **Ekspor/Impor** data dalam bentuk teks.
-- **Scanner koin KOL**: daftar koin pump.fun yang baru dibeli wallet top leaderboard Kolscan dalam **2 jam terakhir**.
+- **Scanner koin KOL**: daftar koin pump.fun yang baru dibeli wallet top leaderboard Kolscan dalam **1 jam terakhir** (bisa 30 menit/2 jam), dipindai langsung di browser saat tombol ditekan.
 
 ## Cara pakai
 1. Buka demo atau jalankan di PC (lihat bawah).
@@ -59,22 +59,27 @@ Semua berjalan **100% di browser** (HTML + CSS + JavaScript murni, tanpa server,
 Jika API membalas `429 Too Many Requests`, app otomatis memperlambat refresh ke 30 detik lalu mencoba lagi.
 
 ## Cara kerja Scanner koin KOL
-Membaca ratusan transaksi wallet terlalu berat untuk browser, jadi pemindaian dijalankan oleh **GitHub Actions** dan hasilnya disimpan sebagai file `data/scan.json` di repo. App hanya membaca file itu.
+Scanner berjalan **langsung di browser saat tombol "Scan koin" ditekan** (jendela 30 menit / 1 jam / 2 jam, default 1 jam). Kolscan tidak mengizinkan akses dari browser (CORS), jadi daftar wallet disiapkan GitHub Actions di `data/wallets.json`.
 
 ```
-GitHub Actions (tiap jam, menit ke-15 UTC)
-  └─ node scanner/scan.mjs
-       1. Ambil daftar wallet top dari https://kolscan.io/leaderboard (halaman publik menampilkan 50 wallet harian)
-       2. Untuk tiap wallet: ambil signature transaksi 2 jam terakhir (getSignaturesForAddress)
-       3. Ambil detail tiap transaksi (getTransaction) dan hitung perubahan SOL & token milik wallet
-       4. Swap sederhana SOL → 1 token = BELI, token → SOL = JUAL
-       5. Kelompokkan per token berakhiran "pump": jumlah wallet pembeli, total SOL dibeli,
-          SOL hasil jual, berapa wallet yang masih memegang ≥50% pembeliannya
-       6. Tambahkan data DexScreener (simbol, harga, market cap, likuiditas, % perubahan)
-       7. Hitung skor lalu tulis data/scan.json → commit ke repo
-App (tombol "Scan koin")
-  └─ baca data/scan.json → cek ulang harga live di DexScreener → tampilkan dengan filter
+GitHub Actions (2x sehari, 00.05 & 12.05 UTC = 07.05 & 19.05 WIB)
+  └─ WALLETS_ONLY=1 node scanner/scan.mjs
+       Ambil 50 wallet top dari https://kolscan.io/leaderboard → data/wallets.json → commit
+
+App (tombol "Scan koin", bisa dihentikan dengan "Berhenti")
+  1. Baca data/wallets.json
+  2. Tiap wallet: signature transaksi dalam jendela waktu (getSignaturesForAddress, RPC publik)
+  3. Detail tiap transaksi (getTransaction, 12 paralel) → perubahan SOL & token milik wallet
+  4. Swap sederhana SOL → 1 token = BELI, token → SOL = JUAL
+  5. Kelompokkan per token berakhiran "pump": jumlah wallet pembeli, SOL dibeli,
+     wallet yang masih memegang ≥50% pembeliannya
+  6. Harga, market cap, % 1 jam dari DexScreener → tampilkan dengan filter
+  Jika RPC gagal, app memuat hasil terakhir data/scan.json sebagai cadangan.
 ```
+
+Scan 1 jam untuk 50 wallet biasanya 1–3 menit (banyak wallet menerima transaksi spam/airdrop yang ikut terbaca).
+
+Scan penuh lewat Actions masih tersedia: **Actions → Scan koin KOL → Run workflow → centang "Scan penuh"** (hasil ke `data/scan.json`).
 
 **Skor** (untuk urutan, bukan rekomendasi):
 `skor = wallet_pembeli × 10 + wallet_masih_pegang × 8 + log10(1 + SOL_dibeli) × 12 − penalti kenaikan 24 jam`
@@ -121,10 +126,11 @@ Hasilnya ditulis ke `data/scan.json`, lalu tombol **Scan koin** di app lokal aka
 
 | Variabel | Default | Fungsi |
 |---|---|---|
-| `HOURS` | `2` | Jendela waktu transaksi (jam) |
+| `HOURS` | `2` (Actions: `1`) | Jendela waktu transaksi (jam) |
 | `MAX_WALLETS` | `100` | Maksimal wallet dari leaderboard (Kolscan publik = 50) |
 | `MAX_TX_PER_WALLET` | `500` | Batas transaksi dibaca per wallet |
 | `CONCURRENCY` | `8` | Jumlah permintaan RPC paralel |
+| `WALLETS_ONLY` | kosong | `1` = hanya perbarui `data/wallets.json` |
 | `RPC_URL` | publicnode | RPC Solana (disarankan RPC pribadi, mis. Helius gratis) |
 | `OUT` | `data/scan.json` | Lokasi file hasil |
 
@@ -142,12 +148,12 @@ Tanpa menjalankan scanner, app lokal otomatis mengambil hasil scan terbaru dari 
 1. Klik **Fork** di GitHub.
 2. Di fork-mu: **Settings → Pages → Branch `main` / root → Save**. App akan tersedia di `https://<username>.github.io/Naszcan/`.
 3. **Settings → Actions → General → Workflow permissions → Read and write permissions** (agar Actions bisa commit `data/scan.json`).
-4. Tab **Actions** → aktifkan workflow → pilih **Scan koin KOL** → **Run workflow** untuk scan pertama.
+4. Tab **Actions** → aktifkan workflow → pilih **Scan koin KOL** → **Run workflow** untuk membuat `data/wallets.json` pertama.
 5. (Disarankan) **Settings → Secrets and variables → Actions → New repository secret**: nama `RPC_URL`, isi URL RPC pribadimu. RPC publik sering membatasi permintaan.
-6. Ganti URL cadangan di `app.js` (`SCAN_URLS`) dari `sagaevans/Naszcan` ke `<username>/Naszcan`.
+6. Ganti URL cadangan di `app.js` (`SCAN_URLS` dan `WALLET_URLS`) dari `sagaevans/Naszcan` ke `<username>/Naszcan`.
 
 **Mengatur / menghentikan scan otomatis**
-- Ubah jadwal: edit `cron` di `.github/workflows/scan.yml` (format UTC; `15 * * * *` = tiap jam menit ke-15).
+- Ubah jadwal: edit `cron` di `.github/workflows/scan.yml` (format UTC; `5 0,12 * * *` = 2x sehari).
 - Hentikan scan yang sedang berjalan: **Actions → pilih run → Cancel run**.
 - Matikan jadwal: **Actions → Scan koin KOL → ⋯ → Disable workflow**.
 
@@ -159,7 +165,8 @@ hark.js                     Komponen UI (navigasi, dll.)
 app.js                      Logika simulator, harga, grafik, scanner
 scanner/scan.mjs            Skrip pemindai wallet KOL (Node.js)
 .github/workflows/scan.yml  Jadwal GitHub Actions untuk scanner
-data/scan.json              Hasil scan (dibuat otomatis)
+data/wallets.json           Daftar wallet KOL untuk scan di browser (dibuat Actions)
+data/scan.json              Hasil scan penuh Actions (cadangan)
 SCANNER.md                  Ringkasan scanner
 .nojekyll                   Agar GitHub Pages menyajikan file apa adanya
 ```
