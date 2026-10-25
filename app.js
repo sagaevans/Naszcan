@@ -692,12 +692,14 @@
           var body = $("scan-body"); if (!body) return;
           if (!scanData) { body.innerHTML = ""; return; }
           var min = +$("scan-min").value, mc = +$("scan-mc").value, hold = $("scan-hold").checked;
-          var onlyNew = $("scan-new") && $("scan-new").checked;
-          var newSince = (scanData.generatedAt ? Date.parse(scanData.generatedAt) / 1000 : Date.now() / 1000) - (scanData.hours || 1) * 3600;
+          var ageH = +($("scan-age") && $("scan-age").value) || 0, minSol = +($("scan-minsol") && $("scan-minsol").value) || 0;
+          var newSince = Date.now() / 1000 - ageH * 3600;
           var rows = scanData.coins.filter(function (c) {
             var live = scanLive[c.ca] || {}, cap = live.marketCap != null ? live.marketCap : live.fdv != null ? live.fdv : c.marketCap;
             if (c.kolWallets < min) return false;
-            if (onlyNew && scanData.live && !(c.launchedAt && c.launchedAt >= newSince)) return false;
+            if (!c.launchedAt && c.pairCreatedAt) c.launchedAt = Math.floor(c.pairCreatedAt / 1000);
+            if (ageH > 0 && !(c.launchedAt && c.launchedAt >= newSince)) return false;
+            if (minSol > 0 && !(+c.solSpent >= minSol)) return false;
             if (hold && !(c.kolHolders > 0)) return false;
             if (mc && cap != null && cap > mc) return false;
             return true;
@@ -850,7 +852,7 @@
         function runScan() {
           var btn = $("scan-btn"), meta = $("scan-meta");
           if (btn.getAttribute("data-busy")) { scanRun++; btn.removeAttribute("data-busy"); btn.textContent = "Scan koin"; meta.textContent = "Scan dihentikan."; return; }
-          var run = ++scanRun, hours = +($("scan-hours") ? $("scan-hours").value : 1), t0 = Date.now();
+          var run = ++scanRun, hours = Math.min(6, Math.max(0.25, +($("scan-hours") ? $("scan-hours").value : 2) || 2)), t0 = Date.now();
           btn.setAttribute("data-busy", "1"); btn.textContent = "Berhenti";
           meta.textContent = "Memuat daftar wallet KOL…";
           var label = hours < 1 ? Math.round(hours * 60) + " menit" : hours + " jam";
@@ -876,7 +878,7 @@
           });
         }
         $("scan-btn").addEventListener("click", runScan);
-        ["scan-min", "scan-mc", "scan-hold", "scan-new", "scan-hours"].forEach(function (id) { $(id).addEventListener("change", renderScan); });
+        ["scan-min", "scan-mc", "scan-hold", "scan-age", "scan-minsol"].forEach(function (id) { $(id).addEventListener("change", renderScan); $(id).addEventListener("input", renderScan); });
         document.addEventListener("click", function (e) {
           var b = e.target.closest && e.target.closest("[data-scroll]"); if (!b) return;
           var el = $(b.getAttribute("data-scroll")); if (el) setTimeout(function () { el.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
