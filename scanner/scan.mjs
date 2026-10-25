@@ -3,7 +3,7 @@
 // menjumlahkan SOL yang dibelanjakan per token pump.fun, lalu memperkaya dengan DexScreener.
 // Output: data/scan.json
 // Jalankan: node scanner/scan.mjs   (Node 18+)
-// Env opsional: RPC_URL (mis. Helius), HOURS (default 2), MAX_WALLETS (default 100),
+// Env opsional: WALLETS_ONLY=1 (hanya perbarui data/wallets.json), RPC_URL (mis. Helius), HOURS (default 2), MAX_WALLETS (default 100),
 //               MAX_TX_PER_WALLET (default 500), CONCURRENCY (default 8), OUT (default data/scan.json)
 
 import { writeFile, mkdir } from "node:fs/promises";
@@ -15,6 +15,8 @@ const MAX_WALLETS = +(process.env.MAX_WALLETS || 100);
 const MAX_TX = +(process.env.MAX_TX_PER_WALLET || 500);
 const CONC = +(process.env.CONCURRENCY || 8);
 const OUT = process.env.OUT || "data/scan.json";
+const WALLETS_OUT = process.env.WALLETS_OUT || "data/wallets.json";
+const WALLETS_ONLY = /^(1|true|yes)$/i.test(process.env.WALLETS_ONLY || "");
 const SOL_MINT = "So11111111111111111111111111111111111111112";
 const STABLES = new Set([SOL_MINT, "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"]);
 const UA = { "user-agent": "Mozilla/5.0 (NasZcan scanner; +https://github.com/sagaevans/Naszcan)" };
@@ -112,6 +114,11 @@ async function main() {
   const wallets = await kolscanWallets();
   log("wallet:", wallets.length);
   if (!wallets.length) throw new Error("Leaderboard Kolscan kosong / berubah format");
+  // Daftar wallet untuk scan langsung di browser (Kolscan tidak mengizinkan CORS)
+  await mkdir(dirname(WALLETS_OUT), { recursive: true });
+  await writeFile(WALLETS_OUT, JSON.stringify({ updatedAt: new Date().toISOString(), source: "kolscan.io/leaderboard (harian)", wallets }, null, 1));
+  log("daftar wallet ->", WALLETS_OUT);
+  if (WALLETS_ONLY) return;
 
   const agg = {}; // mint -> stats
   let txCount = 0;
