@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-26T03:49:54.582Z",
+ "updatedAt": "2026-10-26T18:26:29.534Z",
  "source": "kolscan.io/leaderboard (harian)",
  "wallets": [
   {
@@ -7,67 +7,67 @@
    "rank": 1
   },
   {
-   "wallet": "4xY9T1Q7foJzJsJ6YZDSsfp9zkzeZsXnxd45SixduMmr",
+   "wallet": "DAEdBmTPEKM6xkwfzC3d411QUe6coKpkND6UURa4CvHC",
    "rank": 2
   },
   {
-   "wallet": "DEdEW3SMPU2dCfXEcgj2YppmX9H3bnMDJaU4ctn2BQDQ",
+   "wallet": "CyaE1VxvBrahnPWkqm5VsdCvyS2QmNht2UFrKJHga54o",
    "rank": 3
   },
   {
-   "wallet": "ALauG4FwEYDgSXd5Hen6kvuWSCdUi2fYNSNqM1Ci31wE",
+   "wallet": "4xY9T1Q7foJzJsJ6YZDSsfp9zkzeZsXnxd45SixduMmr",
    "rank": 4
   },
   {
-   "wallet": "CEUA7zVoDRqRYoeHTP58UHU6TR8yvtVbeLrX1dppqoXJ",
+   "wallet": "A38dM3RtNpewkwkWJeyj8C9c8yWtgaaAdh4Rdj1SXg3M",
    "rank": 5
   },
   {
-   "wallet": "E7gozEiAPNhpJsdS52amhhN2XCAqLZa7WPrhyR6C8o4S",
+   "wallet": "4vw54BmAogeRV3vPKWyFet5yf8DTLcREzdSzx4rw9Ud9",
    "rank": 6
   },
   {
-   "wallet": "CyaE1VxvBrahnPWkqm5VsdCvyS2QmNht2UFrKJHga54o",
+   "wallet": "8deJ9xeUvXSJwicYptA9mHsU2rN2pDx37KWzkDkEXhU6",
    "rank": 7
   },
   {
-   "wallet": "4vw54BmAogeRV3vPKWyFet5yf8DTLcREzdSzx4rw9Ud9",
+   "wallet": "Bi4rd5FH5bYEN8scZ7wevxNZyNmKHdaBcvewdPFxYdLt",
    "rank": 8
   },
   {
-   "wallet": "5t9xBNuDdGTGpjaPTx6hKd7sdRJbvtKS8Mhq6qVbo8Qz",
+   "wallet": "5ZuV8eqkvzYFVEKbLvGBdexL2tFv7E5BCd2HZpjqbdg",
    "rank": 9
   },
   {
-   "wallet": "DAEdBmTPEKM6xkwfzC3d411QUe6coKpkND6UURa4CvHC",
+   "wallet": "5t9xBNuDdGTGpjaPTx6hKd7sdRJbvtKS8Mhq6qVbo8Qz",
    "rank": 10
   },
   {
-   "wallet": "862TYSvRYoiHAK3F3WwTRYAfuGiQaGdxedN9AGvRGWo2",
+   "wallet": "J9TYAsWWidbrcZybmLSfrLzryANf4CgJBLdvwdGuC8MB",
    "rank": 11
   },
   {
-   "wallet": "DjM7Tu7whh6P3pGVBfDzwXAx2zaw51GJWrJE3PwtuN7s",
+   "wallet": "215nhcAHjQQGgwpQSJQ7zR26etbjjtVdW74NLzwEgQjP",
    "rank": 12
   },
   {
-   "wallet": "Bi4rd5FH5bYEN8scZ7wevxNZyNmKHdaBcvewdPFxYdLt",
+   "wallet": "6aXFYXbFob1ZKAEDCcqZnX2vooA3TgEqDoy5dAQbeWoV",
    "rank": 13
   },
   {
-   "wallet": "5ZuV8eqkvzYFVEKbLvGBdexL2tFv7E5BCd2HZpjqbdg",
+   "wallet": "CEUA7zVoDRqRYoeHTP58UHU6TR8yvtVbeLrX1dppqoXJ",
    "rank": 14
   },
   {
-   "wallet": "ardinRsN1mNYVeoJWTBsWeYeXvuR9UUDGMsCDKpb6AT",
+   "wallet": "B32QbbdDAyhvUQzjcaM5j6ZVKwjCxAwGH5Xgvb9SJqnC",
    "rank": 15
   },
   {
-   "wallet": "GNrmKZCxYyNiSUsjduwwPJzhed3LATjciiKVuSGrsHEC",
+   "wallet": "DEdEW3SMPU2dCfXEcgj2YppmX9H3bnMDJaU4ctn2BQDQ",
    "rank": 16
   },
   {
-   "wallet": "B32QbbdDAyhvUQzjcaM5j6ZVKwjCxAwGH5Xgvb9SJqnC",
+   "wallet": "GNrmKZCxYyNiSUsjduwwPJzhed3LATjciiKVuSGrsHEC",
    "rank": 17
   },
   {
@@ -75,11 +75,11 @@
    "rank": 18
   },
   {
-   "wallet": "9St6ETbe3CFitw6UNSd8kg7kZ6STXy71wEGiERqQj89U",
+   "wallet": "862TYSvRYoiHAK3F3WwTRYAfuGiQaGdxedN9AGvRGWo2",
    "rank": 19
   },
   {
-   "wallet": "CXVJewdc79TYR55sz4SGLSWUPz3r4LBJ9Mn93bZ8ZyAz",
+   "wallet": "YvEsBWpHK5PJ6Q8m4YrocwKeWys1NG67pbgi73UPnuX",
    "rank": 20
   },
   {
@@ -87,119 +87,119 @@
    "rank": 21
   },
   {
-   "wallet": "G6fUXjMKPJzCY1rveAE6Qm7wy5U3vZgKDJmN1VPAdiZC",
+   "wallet": "CXVJewdc79TYR55sz4SGLSWUPz3r4LBJ9Mn93bZ8ZyAz",
    "rank": 22
   },
   {
-   "wallet": "EQaxqKT3N981QBmdSUGNzAGK5S26zUwAdRHhBCgn87zD",
+   "wallet": "8nqtxpFpuXwfXG4pBLsDkkuMMPK9FjSkBMCn542HiM3v",
    "rank": 23
   },
   {
-   "wallet": "A3W8psibkTUvjxs4LRscbnjux6TFDXdvD4m4GsGpQ2KJ",
+   "wallet": "BXNiM7pqt9Ld3b2Hc8iT3mA5bSwoe9CRrtkSUs15SLWN",
    "rank": 24
   },
   {
-   "wallet": "719sfKUjiMThumTt2u39VMGn612BZyCcwbM5Pe8SqFYz",
+   "wallet": "A3W8psibkTUvjxs4LRscbnjux6TFDXdvD4m4GsGpQ2KJ",
    "rank": 25
   },
   {
-   "wallet": "B9oKseVKRntTvfADyaUoH7oVmoyVbBfUf4NKyQc4KK2D",
+   "wallet": "JAunzNqs3bVBcWDjDxfq9rgLzJMCadNXoaCgfzLGMtYs",
    "rank": 26
   },
   {
-   "wallet": "YvEsBWpHK5PJ6Q8m4YrocwKeWys1NG67pbgi73UPnuX",
+   "wallet": "ardinRsN1mNYVeoJWTBsWeYeXvuR9UUDGMsCDKpb6AT",
    "rank": 27
   },
   {
-   "wallet": "EHg5YkU2SZBTvuT87rUsvxArGp3HLeye1fXaSDfuMyaf",
+   "wallet": "ALauG4FwEYDgSXd5Hen6kvuWSCdUi2fYNSNqM1Ci31wE",
    "rank": 28
   },
   {
-   "wallet": "FsG3BaPmRTdSrPaivbgJsFNCCa8cPfkUtk8VLWXkHpHP",
+   "wallet": "EQaxqKT3N981QBmdSUGNzAGK5S26zUwAdRHhBCgn87zD",
    "rank": 29
   },
   {
-   "wallet": "2octNbV8QTtaFMJtbWhtkqMQt3deBe4D8mYcNworhv3t",
+   "wallet": "LeenseyyUU3ccdBPCFCrrZ8oKU2B3T2uToGGZ7eVABY",
    "rank": 30
   },
   {
-   "wallet": "7zTnUTHMd5qFUpZrrbXazpvGwC1Hvb3g5rFjnFAygLSo",
+   "wallet": "53BnNc49Ajgstciq3CRoyxuBpkkW1r8pgPyvr7JGYnsh",
    "rank": 31
   },
   {
-   "wallet": "8nqtxpFpuXwfXG4pBLsDkkuMMPK9FjSkBMCn542HiM3v",
+   "wallet": "B9oKseVKRntTvfADyaUoH7oVmoyVbBfUf4NKyQc4KK2D",
    "rank": 32
   },
   {
-   "wallet": "2k7Mnf2K3GhpB7hEVN1CFFeV4oNzzuCS5Q6SmcfAoLHd",
+   "wallet": "DjM7Tu7whh6P3pGVBfDzwXAx2zaw51GJWrJE3PwtuN7s",
    "rank": 33
   },
   {
-   "wallet": "6aXFYXbFob1ZKAEDCcqZnX2vooA3TgEqDoy5dAQbeWoV",
+   "wallet": "6S8GezkxYUfZy9JPtYnanbcZTMB87Wjt1qx3c6ELajKC",
    "rank": 34
   },
   {
-   "wallet": "EqiFgyNw6kgrmYstWyrP8VjKhka7XEmKTZzHSmwpr1Zb",
+   "wallet": "2octNbV8QTtaFMJtbWhtkqMQt3deBe4D8mYcNworhv3t",
    "rank": 35
   },
   {
-   "wallet": "GGznouFGrtSETCzvt14gysyjZ2uYKBDVjMBaq8h1aCHG",
+   "wallet": "BQVz7fQ1WsQmSTMY3umdPEPPTm1sdcBcX9sP7o6kPRmB",
    "rank": 36
   },
   {
-   "wallet": "CAPn1yH4oSywsxGU456jfgTrSSUidf9jgeAnHceNUJdw",
+   "wallet": "EeXvxkcGqMDZeTaVeawzxm9mbzZwqDUMmfG3bF7uzumH",
    "rank": 37
   },
   {
-   "wallet": "8rvAsDKeAcEjEkiZMug9k8v1y8mW6gQQiMobd89Uy7qR",
+   "wallet": "8fsKLLtvKNanL4ginCaiRS6UfeemY11rSf8U8fN1dJw4",
    "rank": 38
   },
   {
-   "wallet": "BCagckXeMChUKrHEd6fKFA1uiWDtcmCXMsqaheLiUPJd",
+   "wallet": "5fHJszey2UdB2nETS1y6NS2wSG4ic9byKtbgJzaYzGeV",
    "rank": 39
   },
   {
-   "wallet": "5fHJszey2UdB2nETS1y6NS2wSG4ic9byKtbgJzaYzGeV",
+   "wallet": "Dvbv5TdAyPpJk16X9mUxWFVicYtCUxTLhuof8TGuUaRv",
    "rank": 40
   },
   {
-   "wallet": "2W14ahXD3XBfWJchQ4K5NLXmguWWcTTUTuHDhEzeuvP3",
+   "wallet": "8rvAsDKeAcEjEkiZMug9k8v1y8mW6gQQiMobd89Uy7qR",
    "rank": 41
   },
   {
-   "wallet": "Hw5UKBU5k3YudnGwaykj5E8cYUidNMPuEewRRar5Xoc7",
+   "wallet": "GM7Hrz2bDq33ezMtL6KGidSWZXMWgZ6qBuugkb5H8NvN",
    "rank": 42
   },
   {
-   "wallet": "39q2g5tTQn9n7KnuapzwS2smSx3NGYqBoea11tBjsGEt",
+   "wallet": "9Vk7pkBZ9KFJmzaPzNYjGedyz8qoKMQtnYyYi2AehNMT",
    "rank": 43
   },
   {
-   "wallet": "DU323DieHUGPmYamp6A4Ai1V4YSYgRi35mGpzJGrjf7k",
+   "wallet": "2e1w3Xo441Ytvwn54wCn8itAXwCKbiizc9ynGEv14Vis",
    "rank": 44
   },
   {
-   "wallet": "JAunzNqs3bVBcWDjDxfq9rgLzJMCadNXoaCgfzLGMtYs",
+   "wallet": "DU323DieHUGPmYamp6A4Ai1V4YSYgRi35mGpzJGrjf7k",
    "rank": 45
   },
   {
-   "wallet": "8MaVa9kdt3NW4Q5HyNAm1X5LbR8PQRVDc1W8NMVK88D5",
+   "wallet": "CAPn1yH4oSywsxGU456jfgTrSSUidf9jgeAnHceNUJdw",
    "rank": 46
   },
   {
-   "wallet": "99xnE2zEFi8YhmKDaikc1EvH6ELTQJppnqUwMzmpLXrs",
+   "wallet": "3pfqebV65sHMbF5z86HsPKSiTxwpNhCzjK5X7GUqCbtK",
    "rank": 47
   },
   {
-   "wallet": "A4KxLRntS2V6giboMyfDtwoysmsKPaz8Juw6CwHYxVXn",
+   "wallet": "G6fUXjMKPJzCY1rveAE6Qm7wy5U3vZgKDJmN1VPAdiZC",
    "rank": 48
   },
   {
-   "wallet": "LeenseyyUU3ccdBPCFCrrZ8oKU2B3T2uToGGZ7eVABY",
+   "wallet": "2W14ahXD3XBfWJchQ4K5NLXmguWWcTTUTuHDhEzeuvP3",
    "rank": 49
   },
   {
-   "wallet": "GRcAsAnvZc6cX2Jx2yYFzWV62yqCoU74eV4Nfq36vqxQ",
+   "wallet": "GDoG4tdbx8qkpECQKF5MebbEDpFJn6H739psqgoTG3aN",
    "rank": 50
   }
  ]
